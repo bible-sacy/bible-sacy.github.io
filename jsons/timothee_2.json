@@ -1,0 +1,14 @@
+{
+    "name": "timothee_tite",
+    "pdf": "bible_sacy_timothee_tite.pdf",
+    "offset": 21,
+    "max": 281,
+    "min": 171,
+    "chapters": [
+        ["avis", 171],
+        [1, 173],
+        [2, 198],
+        [3, 236],
+        [4, 259]
+    ]
+}

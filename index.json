@@ -1,0 +1,32 @@
+{
+    "default": "jean",
+    "books": [
+        ["matthieu_1", "Matthieu"],
+        ["marc", "Marc"],
+        ["luc", "Luc"],
+        ["jean", "Jean"],
+        ["actes_des_apotres", "Actes des Apôtres"],
+        ["romains", "Romains"],
+        ["corinthiens_1", "1 Corinthiens"],
+        ["corinthiens_2", "2 Corinthiens"],
+        ["galates", "Galates"],
+        ["ephesiens", "Éphésiens"],
+        ["philippiens", "Philippiens"],
+        ["colossiens", "Colossiens"],
+        ["thessaloniciens_1", "1 Thessaloniciens"],
+        ["thessaloniciens_2", "2 Thessaloniciens"],
+        ["timothee_1", "1 Timothée"],
+        ["timothee_2", "2 Timothée"],
+        ["tite", "Tite"],
+        ["philemon", "Philémon"],
+        ["hebreux", "Hébreux"],
+        ["jacques", "Jacques"],
+        ["pierre_1", "1 Pierre"],
+        ["pierre_2", "2 Pierre"],
+        ["jean_1", "1 Jean"],
+        ["jean_2", "2 Jean"],
+        ["jean_3", "3 Jean"],
+        ["jude", "Jude"],
+        ["apocalypse", "Apocalypse"]
+    ]
+}

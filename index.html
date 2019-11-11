@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>Bible de Sacy — Évangile selon S. Jean</title>
+  </head>
+  <body>
+      <div id="main" style="margin: auto; text-align: center;">
+
+        <div style="text-align: center; margin: auto;">
+            <form id="book-form" style="display: inline">
+                <label for="books">Livre :</label>
+                <select name="books" id="books">
+                </select>
+                <label for="chapters">Chapitre :</label>
+                <select name="chapters" id="chapters">
+                </select>
+            </form>
+        </div>
+
+        <div style="text-align: center; margin: auto;">
+            <button id="prev" style="width: 20%">&larr;</button>
+            <form id="page-form" style="display: inline">
+                    <label for="pages">Page :</label>                
+                    <input type="number" id="pages" name="pages"/>
+            </form>
+            <button id="next" style="width: 20%">&rarr;</button>
+        </div>            
+        
+        <div class="image">
+            <img id="page" style="max-width: 50em; width: 100%; min-width: 20em;"/>
+        </div>
+
+        <div style="text-align: center; margin: auto;">
+                <button onclick="previousPage()" style="width: 30%">&larr;</button>
+                <button onclick="nextPage()" style="width: 30%">&rarr;</button>
+            </div>                
+      </div>
+        <script>
+            const img = document.getElementById("page")
+            const chapters = document.getElementById("chapters")
+            const pageSelector = document.getElementById("pages")
+            const books = document.getElementById("books")
+            let name = null
+            let offset = null
+            let max = null
+            let min = null
+
+            document.getElementById("page-form").addEventListener("submit", e => e.preventDefault())
+            document.getElementById("book-form").addEventListener("submit", e => e.preventDefault())
+            
+            books.addEventListener("change", e => {
+                useBook(books.value)
+            })
+
+            fetch("index.json")
+            .then(response => response.json())
+            .then(index => {
+                index.books.forEach(value => {
+                    books.options.add(new Option(value[1], value[0]))
+                })
+                books.value = index.default
+                useBook(index.default)
+            })
+
+            let useBook = nameArg => fetch(`jsons/${nameArg}.json`)
+                .then(response => response.json())
+                .then(json => {
+                    console.log("json is ", json)
+                    name = json.name
+                    offset = json.offset
+                    max = json.max
+                    min = json.min
+                    pages.min = min
+                    pages.max = max
+                    while (chapters.options.length) chapters.remove(0);
+                    json.chapters.forEach(value => {
+                        chapters.options.add(new Option(value[0], value[1]))
+                    })
+                    setPage(json.chapters[0][1])
+                    update()
+                })
+
+            let nextPage = () => {
+                if (parseInt(pageSelector.value) < max) {
+                    pageSelector.value = parseInt(pageSelector.value) + 1
+                    update()
+                    document.body.scrollTop = document.documentElement.scrollTop = 0
+                }
+            }
+
+            let previousPage = () => {
+                if (parseInt(pageSelector.value) > min) {
+                    pageSelector.value = parseInt(pageSelector.value) - 1
+                    update()
+                }
+            }
+
+            let setPage = p =>  {
+                if (p >= min && p <= max) {
+                    pageSelector.value = parseInt(p)
+                    update()
+                }
+            }
+
+            let update = () => {
+                const page = parseInt(pageSelector.value)
+                const number = offset + page
+                img.src = `pngs/${name}/${name}-${number}.png`
+                if (parseInt(chapters.value) !== page) {
+                    chapters.value = null;
+                }
+            }
+
+            pageSelector.addEventListener("change", update)
+
+            chapters.addEventListener("change", event => {
+                // console.log("event is ", event)
+                setPage(chapters.value)
+            })
+
+
+
+            document.addEventListener('keydown', event => {
+                // console.log("event is ", event)
+                switch(event.key) {
+                    case 'ArrowRight':
+                        nextPage()
+                        break
+                    case 'ArrowLeft':
+                        previousPage()
+                        break
+                }
+            })
+            
+            document.getElementById("next").addEventListener("click", nextPage)
+            document.getElementById("prev").addEventListener("click", previousPage)
+
+        </script>
+  </body>
+</html>

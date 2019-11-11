@@ -1,0 +1,14 @@
+{
+    "name": "galates_ephesiens",
+    "pdf": "bible_sacy_galates_ephesiens.pdf",
+    "offset": 21,
+    "max": 612,
+    "min": 493,
+    "chapters": [
+        ["avis", 493],
+        [1, 495],
+        [2, 530],
+        [3, 564],
+        [4, 598]
+    ]
+}

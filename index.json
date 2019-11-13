@@ -19,6 +19,14 @@
         ["timothee_2", "2 Timothée"],
         ["tite", "Tite"],
         ["philemon", "Philémon"],
-        ["hebreux", "Hébreux"]
+        ["hebreux", "Hébreux"],
+        ["jacques", "Jacques"],
+        ["pierre_1", "1 Pierre"],
+        ["pierre_2", "2 Pierre"],
+        ["jean_1", "1 Jean"],
+        ["jean_2", "2 Jean"],
+        ["jean_3", "3 Jean"],
+        ["jude", "Jude"],
+        ["apocalypse", "Apocalypse"]
     ]
 }

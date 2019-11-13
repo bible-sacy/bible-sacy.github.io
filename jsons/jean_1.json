@@ -1,0 +1,15 @@
+{
+    "name": "epitres_catholiques",
+    "pdf": "bible_sacy_epitres_catholiques.pdf",
+    "offset": 29,
+    "max": 536,
+    "min": 385,
+    "chapters": [
+        ["argument", 385],
+        [1, 393],
+        [2, 408],
+        [3, 448],
+        [4, 480],
+        [5, 508]
+    ]
+}

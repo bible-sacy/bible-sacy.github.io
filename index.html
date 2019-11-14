@@ -37,6 +37,21 @@
             </div>                
       </div>
         <script>
+            //console.log("location.hash is", location.hash)
+
+            window.addEventListener('popstate', () => {
+                if (location.hash && (m = location.hash.match(/#\/(.+)\/(.+)/))) {
+                    let newBook = m[1]
+                    let newPage = m[2]
+                    if (newBook !== books.value) {
+                        books.value = newBook
+                        useBook(books.value, newPage)
+                    } else {
+                        setPage(newPage)
+                    }
+                }
+            })
+
             const img = document.getElementById("page")
             const chapters = document.getElementById("chapters")
             const pageSelector = document.getElementById("pages")
@@ -59,14 +74,21 @@
                 index.books.forEach(value => {
                     books.options.add(new Option(value[1], value[0]))
                 })
-                books.value = index.default
-                useBook(index.default)
+                if (location.hash && (m = location.hash.match(/#\/(.+)\/(.+)/))) {
+                    books.value = m[1]
+                    useBook(books.value, m[2])
+                } else {
+                    books.value = index.default
+                    useBook(index.default, null)    
+                }
             })
 
-            let useBook = nameArg => fetch(`jsons/${nameArg}.json`)
+            
+
+            let useBook = (nameArg, page) => fetch(`jsons/${nameArg}.json`)
                 .then(response => response.json())
                 .then(json => {
-                    console.log("json is ", json)
+                    //console.log("json is ", json)
                     name = json.name
                     offset = json.offset
                     max = json.max
@@ -77,7 +99,7 @@
                     json.chapters.forEach(value => {
                         chapters.options.add(new Option(value[0], value[1]))
                     })
-                    setPage(json.chapters[0][1])
+                    setPage(page ? page : json.chapters[0][1])
                     update()
                 })
 
@@ -110,6 +132,7 @@
                 if (parseInt(chapters.value) !== page) {
                     chapters.value = null;
                 }
+                location.hash = `/${books.value}/${page}`
             }
 
             pageSelector.addEventListener("change", update)

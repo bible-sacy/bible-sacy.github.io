@@ -1,0 +1,10 @@
+{
+    "name": "romains_corinthiens_1",
+    "pdf": "bible_sacy_romains_corinthiens_1.pdf",
+    "offset": 5,
+    "max": 32,
+    "min": 5,
+    "chapters": [
+        ["préface générale", 5]
+    ]
+}

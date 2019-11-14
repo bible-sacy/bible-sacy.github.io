@@ -3,7 +3,7 @@
     "pdf": "bible_sacy_romains_corinthiens_1.pdf",
     "offset": 5,
     "max": 480,
-    "min": -4,
+    "min": 33,
     "chapters": [
         ["préface", 33],
         [1, 39],

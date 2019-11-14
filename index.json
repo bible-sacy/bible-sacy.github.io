@@ -1,11 +1,13 @@
 {
-    "default": "matthieu_1",
+    "default": "preface_nouveau_testament",
     "books": [
+        ["preface_nouveau_testament", "(Préface du Nouveau Testament)"],
         ["matthieu_1", "Matthieu"],
         ["marc", "Marc"],
         ["luc", "Luc"],
         ["jean", "Jean"],
         ["actes_des_apotres", "Actes des Apôtres"],
+        ["preface_epitres_saint_paul", "(Préface des épîtres de Saint Paul)"],
         ["romains", "Romains"],
         ["corinthiens_1", "1 Corinthiens"],
         ["corinthiens_2", "2 Corinthiens"],
@@ -20,6 +22,7 @@
         ["tite", "Tite"],
         ["philemon", "Philémon"],
         ["hebreux", "Hébreux"],
+        ["preface_epitres_catholiques", "(Préface des épîtres catholiques)"],
         ["jacques", "Jacques"],
         ["pierre_1", "1 Pierre"],
         ["pierre_2", "2 Pierre"],

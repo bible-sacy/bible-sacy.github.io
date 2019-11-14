@@ -1,0 +1,10 @@
+{
+    "name": "epitres_catholiques",
+    "pdf": "bible_sacy_epitres_catholiques.pdf",
+    "offset": 29,
+    "max": -10,
+    "min": -21,
+    "chapters": [
+        ["préface", -21]
+    ]
+}

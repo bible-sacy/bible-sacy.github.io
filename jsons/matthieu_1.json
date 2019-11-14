@@ -3,7 +3,7 @@
     "pdf": "bible_sacy_matthieu_1.pdf",
     "offset": 29,
     "max": 788,
-    "min": -28,
+    "min": 1,
     "chapters": [
         ["préface", 1],
         [1, 9],

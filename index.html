@@ -2,7 +2,7 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8">
-    <title>Bible de Sacy — Évangile selon S. Jean</title>
+    <title>Bible de Sacy</title>
   </head>
   <body>
       <div id="main" style="margin: auto; text-align: center;">
@@ -133,6 +133,7 @@
                     chapters.value = null;
                 }
                 location.hash = `/${books.value}/${page}`
+                document.title = `Bible de Sacy : ${books.selectedOptions[0].innerText} p. ${page}`
             }
 
             pageSelector.addEventListener("change", update)

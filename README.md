@@ -4,6 +4,6 @@ Ce dépôt comprend les fichiers du site web statique [https://lgd-fr.github.io/
 
 Ces pages sont enregistrées au format PNG, dans le dossiers `pngs`, et sont obtenues à partir d’un traitement avec [Ghostscript](https://www.ghostscript.com/) des numérisations effectuées par [Google Livres](https://books.google.fr/).
 
-Les découpages de chapitres sont enregistrées dans les différents documents JSON du dossier `jsons`.
+Les découpages des chapitres sont enregistrées dans les différents documents JSON du dossier `jsons`.
 
 Le fichier `index.html` contient tout le code javascript qui permet la navigation dans les différents livres disponibles.

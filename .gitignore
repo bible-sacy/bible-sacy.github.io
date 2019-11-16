@@ -1,3 +1,4 @@
 pdfs/
 .next
 node_modules/
+*.pdf

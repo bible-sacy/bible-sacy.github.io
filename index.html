@@ -7,24 +7,32 @@
   <body>
       <div id="main" style="margin: auto; text-align: center;">
 
-        <div style="text-align: center; margin: auto;">
+        <div style="text-align: center; margin-left: auto; margin-right: auto; margin-bottom: 0.5em;">
+            Bible de Sacy
+            &nbsp;|&nbsp;        
             <form id="book-form" style="display: inline">
                 <label for="books">Livre :</label>
                 <select name="books" id="books">
                 </select>
+                &nbsp;|&nbsp;
                 <label for="chapters">Chapitre :</label>
                 <select name="chapters" id="chapters">
                 </select>
             </form>
-            <a href="https://github.com/bible-sacy/bible-sacy.github.io" target="blank">(code source)</a>
+            &nbsp;|&nbsp;
+            <a href="https://github.com/bible-sacy/bible-sacy.github.io" target="blank">code source</a>
+            &nbsp;|&nbsp;
+            <a id="pdfLink" href="https://github.com/bible-sacy/pdfs/raw/master/bible_sacy_matthieu_1.pdf">pdf original</a>
         </div>
-
-        <div style="text-align: center; margin: auto;">
+        <hr/>
+        <div style="text-align: center; margin-left: auto; margin-right: auto;">
             <button id="prev" style="width: 20%">&larr;</button>
+            &nbsp;|&nbsp;
             <form id="page-form" style="display: inline">
                     <label for="pages">Page :</label>                
                     <input type="number" id="pages" name="pages"/>
             </form>
+            &nbsp;|&nbsp;
             <button id="next" style="width: 20%">&rarr;</button>
         </div>            
         
@@ -40,6 +48,8 @@
       </div>
         <script>
             //console.log("location.hash is", location.hash)
+
+            const PDFS_BASE = 'https://github.com/bible-sacy/pdfs/raw/master'
 
             window.addEventListener('popstate', () => {
                 if (location.hash && (m = location.hash.match(/#\/(.+)\/(.+)/))) {
@@ -58,10 +68,12 @@
             const chapters = document.getElementById("chapters")
             const pageSelector = document.getElementById("pages")
             const books = document.getElementById("books")
+            const pdfLink = document.getElementById("pdfLink")
             let name = null
             let offset = null
             let max = null
             let min = null
+            let pdf = null
 
             document.getElementById("page-form").addEventListener("submit", e => e.preventDefault())
             document.getElementById("book-form").addEventListener("submit", e => e.preventDefault())
@@ -97,6 +109,7 @@
                     min = json.min
                     pages.min = min
                     pages.max = max
+                    pdf = json.pdf
                     while (chapters.options.length) chapters.remove(0);
                     json.chapters.forEach(value => {
                         chapters.options.add(new Option(value[0], value[1]))
@@ -136,6 +149,7 @@
                 }
                 location.hash = `/${books.value}/${page}`
                 document.title = `Bible de Sacy : ${books.selectedOptions[0].innerText} p. ${page}`
+                pdfLink.href = `${PDFS_BASE}/${pdf}`
             }
 
             pageSelector.addEventListener("change", update)

@@ -6,31 +6,29 @@
     <meta name="google-site-verification" content="QEHugPIPzX5vDvVdc4EOzFn4Q-L5lSUP60V2q6FjkBY" />
     <title>Bible de Sacy</title>
   </head>
-  <body>
+  <body style="margin-bottom: 0px">
       <div id="main" style="margin: auto; text-align: center;">
 
         <div style="text-align: center; margin-left: auto; margin-right: auto; margin-bottom: 0.5em;">
             Bible de Sacy
             |       
             <form id="book-form" style="display: inline">
-                <label for="books">Livre :</label>
+                <label for="books">Livre</label>
                 <select name="books" id="books">
                 </select>
                 |
-                <label for="chapters">Chapitre :</label>
+                <label for="chapters">Chapitre</label>
                 <select name="chapters" id="chapters">
                 </select>
             </form>
         </div>
         <hr/>
         <div style="text-align: center; margin-left: auto; margin-right: auto;">
-            <button id="prev" style="width: 20%">&larr;</button>
-            |
+            <button id="prev" style="width: 25%">&larr;</button>
             <form id="page-form" style="display: inline">
-                    <label for="pages">Page :</label>&nbsp;<input type="number" id="pages" name="pages"/>
+                    <label for="pages">Page</label>&nbsp;<input type="number" id="pages" name="pages"/>
             </form>
-            |
-            <button id="next" style="width: 20%">&rarr;</button>
+            <button id="next" style="width: 25%">&rarr;</button>
         </div>            
         <small style="margin-top: 0.2em; margin-bottom: 0.4em;" >Tirée de : <span style="font-style: italic;" id="bookInfo"></span>, <span id="editionInfo"></span> <a id="pdfLink" href="https://github.com/bible-sacy/pdfs/raw/master/bible_sacy_matthieu_1.pdf">(pdf)</a></small>
         <div class="image">
@@ -39,11 +37,10 @@
 
         <div style="text-align: center; margin: auto;">
                 <button onclick="previousPage()" style="width: 30%">&larr;</button>
+                <small style="font-size: 8pt"><a href="https://github.com/bible-sacy/bible-sacy.github.io" target="_blank">code source</a></small>
                 <button onclick="nextPage()" style="width: 30%">&rarr;</button>
             </div>
-        
-       <small><a href="https://github.com/bible-sacy/bible-sacy.github.io" target="_blank">code source</a></small>
-
+    
       </div>
         <script>
             //console.log("location.hash is", location.hash)

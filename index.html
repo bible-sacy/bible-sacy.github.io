@@ -20,25 +20,37 @@
                 <label for="chapters">Chapitre</label>
                 <select name="chapters" id="chapters">
                 </select>
+                |
+                <button id="displayInfo"><span id="infoIcon">ℹ</span>&nbsp;info</button>
             </form>
         </div>
+        <div id="infoWindow" style="margin-top: 0.2em; margin-bottom: 0.4em; display: none; text-align: center;" >
+            <hr/>
+                Page courante tirée de : <span style="font-style: italic;" id="bookInfo"></span>, <span id="editionInfo"></span> <a id="pdfLink" href="https://github.com/bible-sacy/pdfs/raw/master/bible_sacy_matthieu_1.pdf">(lien vers le pdf d’origine)</a>
+                 <br/>
+                 <a href="https://github.com/bible-sacy/bible-sacy.github.io" target="_blank">Lien vers le code source du site web.</a>
+                 <br/>
+                 <button id="hideInfo" style="margin-top: 0.3em;"><small>❌&nbsp;cacher ces informations</small></button>
+              </div>      
         <hr/>
         <div style="text-align: center; margin-left: auto; margin-right: auto;">
-            <button id="prev" style="width: 25%">&larr;</button>
+            <button id="prev" style="width: 25%; font-weight: bold;">&larr;</button>
+            &nbsp;
             <form id="page-form" style="display: inline">
                     <label for="pages">Page</label>&nbsp;<input type="number" id="pages" name="pages"/>
             </form>
-            <button id="next" style="width: 25%">&rarr;</button>
-        </div>            
-        <small style="margin-top: 0.2em; margin-bottom: 0.4em;" >Tirée de : <span style="font-style: italic;" id="bookInfo"></span>, <span id="editionInfo"></span> <a id="pdfLink" href="https://github.com/bible-sacy/pdfs/raw/master/bible_sacy_matthieu_1.pdf">(pdf)</a></small>
+            &nbsp;
+            <button id="next" style="width: 25%; font-weight: bold;">&rarr;</button>
+        </div>
+
         <div class="image">
             <img id="page" style="max-width: 50em; width: 100%; min-width: 20em;"/>
         </div>
 
         <div style="text-align: center; margin: auto;">
-                <button onclick="previousPage()" style="width: 30%">&larr;</button>
-                <small style="font-size: 8pt"><a href="https://github.com/bible-sacy/bible-sacy.github.io" target="_blank">code source</a></small>
-                <button onclick="nextPage()" style="width: 30%">&rarr;</button>
+                <button onclick="previousPage()" style="width: 30%; font-weight: bold;">&larr;</button>
+                &nbsp;&nbsp;
+                <button onclick="nextPage()" style="width: 30%; font-weight: bold;">&rarr;</button>
             </div>
     
       </div>
@@ -67,6 +79,28 @@
             const pdfLink = document.getElementById("pdfLink")
             const bookInfo = document.getElementById("bookInfo")
             const editionInfo = document.getElementById("editionInfo")
+            const displayInfo = document.getElementById("displayInfo")
+            const infoIncon = document.getElementById("infoIcon")
+            const hideInfo = document.getElementById("hideInfo")
+            const infoWindow = document.getElementById("infoWindow")
+
+            let infoShown = false
+
+            const toggleInfo = (ev) => {
+                ev.preventDefault()
+                if (infoShown) {
+                    infoIcon.innerText = 'ℹ'
+                    infoWindow.style.display = 'none'
+                } else {
+                    infoWindow.style.display = ''
+                    infoIcon.innerText = '❌'
+                }
+                infoShown = !infoShown
+            }
+
+            displayInfo.addEventListener("click", toggleInfo)
+
+            hideInfo.addEventListener("click", toggleInfo)
 
             let name = null
             let offset = null

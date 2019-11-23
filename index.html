@@ -2,8 +2,8 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="QEHugPIPzX5vDvVdc4EOzFn4Q-L5lSUP60V2q6FjkBY" />
+    <meta folder="viewport" content="width=device-width, initial-scale=1.0">
+    <meta folder="google-site-verification" content="QEHugPIPzX5vDvVdc4EOzFn4Q-L5lSUP60V2q6FjkBY" />
     <title>Bible de Sacy</title>
   </head>
   <body style="margin-bottom: 0px">
@@ -14,11 +14,11 @@
             |       
             <form id="book-form" style="display: inline">
                 <label for="books">Livre</label>
-                <select name="books" id="books">
+                <select folder="books" id="books">
                 </select>
                 |
                 <label for="chapters">Chapitre</label>
-                <select name="chapters" id="chapters">
+                <select folder="chapters" id="chapters">
                 </select>
                 |
                 <button id="displayInfo"><span id="infoIcon">ℹ</span>&nbsp;info</button>
@@ -27,7 +27,7 @@
         <div id="infoWindow" style="margin-top: 0.2em; margin-bottom: 0.4em; display: none; text-align: center;" >
             <hr/>
                 Page courante tirée de : <span style="font-style: italic;" id="bookInfo"></span>, <span id="editionInfo"></span>
-                <a id="pdfLink" href="https://github.com/bible-sacy/pdfs/raw/master/bible_sacy_matthieu_1.pdf">(pdf original)</a>
+                <a id="pdfLink">(pdf original)</a>
                  <br/>
                  <a href="https://github.com/bible-sacy/bible-sacy.github.io/issues" target="_blank">rapporter une erreur</a>
                  &nbsp;|&nbsp;
@@ -42,7 +42,7 @@
             <button id="prev" style="width: 25%; font-weight: bold;">&larr;</button>
             &nbsp;
             <form id="page-form" style="display: inline">
-                    <label for="pages">Page</label>&nbsp;<input type="number" id="pages" name="pages"/>
+                    <label for="pages">Page</label>&nbsp;<input type="number" id="pages" folder="pages"/>
             </form>
             &nbsp;
             <button id="next" style="width: 25%; font-weight: bold;">&rarr;</button>
@@ -107,18 +107,18 @@
 
             hideInfo.addEventListener("click", toggleInfo)
 
-            let name = null
+            let folder = null
             let offset = null
             let max = null
             let min = null
             let pdf = null
-            let editionsMap = null
+            let foldersMap = null
 
             document.getElementById("page-form").addEventListener("submit", e => e.preventDefault())
             document.getElementById("book-form").addEventListener("submit", e => e.preventDefault())
             
             books.addEventListener("change", e => {
-                useBook(books.value)
+                useBook(books.value, null)
             })
 
             fetch("index.json")
@@ -127,7 +127,7 @@
                 index.books.forEach(value => {
                     books.options.add(new Option(value[1], value[0]))
                 })
-                editionsMap = index.editions
+                foldersMap = index.folders
                 if (location.hash && (m = location.hash.match(/#\/(.+)\/(.+)/))) {
                     books.value = m[1]
                     useBook(books.value, m[2])
@@ -143,19 +143,20 @@
                 .then(response => response.json())
                 .then(json => {
                     //console.log("json is ", json)
-                    name = json.name
+                    folder = json.folder
+                    pdf = foldersMap[folder][3]
                     offset = json.offset
                     max = json.max
                     min = json.min
                     pages.min = min
                     pages.max = max
-                    pdf = json.pdf
                     while (chapters.options.length) chapters.remove(0);
                     json.chapters.forEach(value => {
                         chapters.options.add(new Option(value[0], value[1]))
                     })
-                    bookInfo.innerText = editionsMap[pdf][0]
-                    editionInfo.innerText = editionsMap[pdf][1] + ", " + editionsMap[pdf][2]
+                    bookInfo.innerText = foldersMap[folder][0]
+                    editionInfo.innerText = foldersMap[folder][1] + ", " + foldersMap[folder][2]
+                    pdfLink.href = `${PDFS_BASE}/${pdf}`
                     setPage(page ? page : json.chapters[0][1])
                     update()
                 })
@@ -185,13 +186,12 @@
             let update = () => {
                 const page = parseInt(pageSelector.value)
                 const number = offset + page
-                img.src = `pngs/${name}/${name}-${number}.png`
+                img.src = `pngs/${folder}/${folder}-${number}.png`
                 if (parseInt(chapters.value) !== page) {
                     chapters.value = null;
                 }
                 location.hash = `/${books.value}/${page}`
                 document.title = `Bible de Sacy : ${books.selectedOptions[0].innerText} p. ${page}`
-                pdfLink.href = `${PDFS_BASE}/${pdf}`
             }
 
             pageSelector.addEventListener("change", update)

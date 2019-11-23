@@ -32,38 +32,41 @@
         ["jude", "Jude"],
         ["apocalypse", "Apocalypse"]
     ],
-    "editions": {
-        "bible_sacy_matthieu_1.pdf":
-        ["Sainte Bible, Nouvelle Édition, Tome Premier Du Nouveau Testament", "Paris, Guillaume Desprez & Nîmes, Pierre Beaume", 1787],
+    "folders": {
+        "matthieu_1":
+        ["Sainte Bible, Nouvelle Édition, Tome Premier Du Nouveau Testament", "Paris, Guillaume Desprez & Nîmes, Pierre Beaume", 1787, "bible_sacy_matthieu_1.pdf"],
 
-        "bible_sacy_marc_et_luc.pdf":
-        ["Sainte Bible, Nouvelle Édition, Tome Second Du Nouveau Testament", "Paris, Guillaume Desprez & Nîmes, Pierre Beaume", 1787],
+        "marc_et_luc":
+        ["Sainte Bible, Nouvelle Édition, Tome Second Du Nouveau Testament", "Paris, Guillaume Desprez & Nîmes, Pierre Beaume", 1787, "bible_sacy_marc_et_luc.pdf"],
 
-        "bible_sacy_jean.pdf":
-        ["Sainte Bible, Nouvelle Édition, Tome Troisième Du Nouveau Testament", "Nîmes, Pierre Beaume", 1788],
+        "jean":
+        ["Sainte Bible, Nouvelle Édition, Tome Troisième Du Nouveau Testament", "Nîmes, Pierre Beaume", 1788, "bible_sacy_jean.pdf"],
 
-        "bible_sacy_actes_des_apotres.pdf":
-        ["Les Actes des Apostres", "Paris, Guillaume Desprez", 1714],
+        "actes_des_apotres":
+        ["Les Actes des Apostres", "Paris, Guillaume Desprez", 1714, "bible_sacy_actes_des_apotres.pdf"],
 
-        "Epitre_de_Saint_Paul_aux_romains_et_prem_p6KcZkoQH9MC.pdf":
-        ["Sainte Bible, Nouvelle Édition, Tome Cinquième Du Nouveau Testament", "Nîmes, Pierre Beaume", 1788],
+        "romains_corinthiens_1_new":
+        ["Sainte Bible, Nouvelle Édition, Tome Cinquième Du Nouveau Testament", "Nîmes, Pierre Beaume", 1788, "Epitre_de_Saint_Paul_aux_romains_et_prem_p6KcZkoQH9MC.pdf"],
 
-        "bible_sacy_romains_corinthiens_1.pdf":
-        ["Sainte Bible, Nouvelle Édition, Tome Cinquième Du Nouveau Testament", "Nîmes, Pierre Beaume", 1788],
+        "romains_corinthiens_1":
+        ["Sainte Bible, Nouvelle Édition, Tome Cinquième Du Nouveau Testament", "Nîmes, Pierre Beaume", 1788, "bible_sacy_romains_corinthiens_1.pdf"],
 
-        "bible_sacy_corinthiens_2.pdf":
-        ["Épistres de Saint Paul aux Corinthiens, Tome Second, Partie II", "Bruxelles, Eugène Henry Fricx", 1709],
+        "corinthiens_2":
+        ["Épistres de Saint Paul aux Corinthiens, Tome Second, Partie II", "Bruxelles, Eugène Henry Fricx", 1709, "bible_sacy_corinthiens_2.pdf"],
 
-        "bible_sacy_paul_galates_ephesiens.pdf":
-        ["Épistres de Saint Paul aux Galates, Éphésiens, Philippiens, Colossiens, & Thessaloniciens", "Paris, Guillaume Desprez", 1708],
+        "galates_ephesiens":
+        ["Épistres de Saint Paul aux Galates, Éphésiens, Philippiens, Colossiens, & Thessaloniciens", "Paris, Guillaume Desprez", 1708, "bible_sacy_paul_galates_ephesiens.pdf"],
 
-        "bible_sacy_timothee_tite.pdf":
-        ["Épistres de Saint Paul à Timothée, à Tite, à Philémon, & aux Hébreux", "Bruxelles, Eugène Henry Fricx", 1709],
+        "timothee_tite":
+        ["Épistres de Saint Paul à Timothée, à Tite, à Philémon, & aux Hébreux", "Bruxelles, Eugène Henry Fricx", 1709, "bible_sacy_timothee_tite.pdf"],
 
-        "bible_sacy_epitres_catholiques.pdf":
-        ["Épistres Catholiques", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711],
+        "hebreux":
+        ["Épistres de Saint Paul à Timothée, à Tite, à Philémon, & aux Hébreux", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711, "bible_sacy_hebreux.pdf"],
 
-        "bible_sacy_epitres_catholiques_et_apocalypse.pdf":
-        ["Sainte Bible, Nouvelle Édition, Tome Huitième Du Nouveau Testament", "Nîmes, Pierre Beaume", 1789]
+        "epitres_catholiques":
+        ["Épistres Catholiques", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711, "bible_sacy_epitres_catholiques.pdf"],
+
+        "epitres_catholiques_apocalypse":
+        ["Sainte Bible, Nouvelle Édition, Tome Huitième Du Nouveau Testament", "Nîmes, Pierre Beaume", 1789, "bible_sacy_epitres_catholiques_et_apocalypse.pdf"]
     }
 }

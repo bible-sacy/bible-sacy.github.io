@@ -1,6 +1,5 @@
 {
-    "name": "epitres_catholiques",
-    "pdf": "bible_sacy_epitres_catholiques.pdf",
+    "folder": "epitres_catholiques",
     "offset": 29,
     "max": 384,
     "min": 303,

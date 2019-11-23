@@ -1,6 +1,5 @@
 {
-    "name": "jean",
-    "pdf": "bible_sacy_jean.pdf",
+    "folder": "jean",
     "offset": 13,
     "max": 592,
     "min": -12,

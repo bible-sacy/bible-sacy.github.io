@@ -1,6 +1,5 @@
 {
-    "name": "actes_des_apotres",
-    "pdf": "bible_sacy_actes_des_apotres.pdf",
+    "folder": "actes_des_apotres",
     "offset": 45,
     "max": 745,
     "min": -44,

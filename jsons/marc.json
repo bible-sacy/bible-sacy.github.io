@@ -1,6 +1,5 @@
 {
-    "name": "marc_et_luc",
-    "pdf": "bible_sacy_marc_et_luc.pdf",
+    "folder": "marc_et_luc",
     "offset": 13,
     "max": 218,
     "min": -12,

@@ -1,6 +1,5 @@
 {
-    "name": "hebreux",
-    "pdf": "bible_sacy_hebreux.pdf",
+    "folder": "hebreux",
     "offset": 19,
     "max": 844,
     "min": 405,

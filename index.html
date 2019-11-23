@@ -2,8 +2,8 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8">
-    <meta folder="viewport" content="width=device-width, initial-scale=1.0">
-    <meta folder="google-site-verification" content="QEHugPIPzX5vDvVdc4EOzFn4Q-L5lSUP60V2q6FjkBY" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="QEHugPIPzX5vDvVdc4EOzFn4Q-L5lSUP60V2q6FjkBY" />
     <title>Bible de Sacy</title>
   </head>
   <body style="margin-bottom: 0px">
@@ -14,11 +14,11 @@
             |       
             <form id="book-form" style="display: inline">
                 <label for="books">Livre</label>
-                <select folder="books" id="books">
+                <select name="books" id="books">
                 </select>
                 |
                 <label for="chapters">Chapitre</label>
-                <select folder="chapters" id="chapters">
+                <select name="chapters" id="chapters">
                 </select>
                 |
                 <button id="displayInfo"><span id="infoIcon">ℹ</span>&nbsp;info</button>
@@ -42,7 +42,7 @@
             <button id="prev" style="width: 25%; font-weight: bold;">&larr;</button>
             &nbsp;
             <form id="page-form" style="display: inline">
-                    <label for="pages">Page</label>&nbsp;<input type="number" id="pages" folder="pages"/>
+                    <label for="pages">Page</label>&nbsp;<input type="number" id="pages" name="pages"/>
             </form>
             &nbsp;
             <button id="next" style="width: 25%; font-weight: bold;">&rarr;</button>

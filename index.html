@@ -48,6 +48,8 @@
             <button id="next" style="width: 25%; font-weight: bold;">&rarr;</button>
         </div>
 
+        <div id="fautes" style="margin-top: 0.2em; font-weight: bold; font-size: larger;"></div>
+
         <div class="image">
             <img id="page" style="max-width: 50em; width: 100%; min-width: 20em;"/>
         </div>
@@ -71,7 +73,8 @@
                     if (newBook !== books.value) {
                         books.value = newBook
                         useBook(books.value, newPage)
-                    } else {
+                    } else if (newPage !== pageSelector.value) {
+                        console.log("setPage from popState with newPage ", newPage )
                         setPage(newPage)
                     }
                 }
@@ -88,6 +91,7 @@
             const infoIncon = document.getElementById("infoIcon")
             const hideInfo = document.getElementById("hideInfo")
             const infoWindow = document.getElementById("infoWindow")
+            const fautes = document.getElementById("fautes")
 
             let infoShown = false
 
@@ -157,21 +161,23 @@
                     bookInfo.innerText = foldersMap[folder][0]
                     editionInfo.innerText = foldersMap[folder][1] + ", " + foldersMap[folder][2]
                     pdfLink.href = `${PDFS_BASE}/${pdf}`
+                    console.log("setPage from useBook")
                     setPage(page ? page : json.chapters[0][1])
-                    update()
                 })
 
             let nextPage = () => {
                 if (parseInt(pageSelector.value) < max) {
                     pageSelector.value = parseInt(pageSelector.value) + 1
-                    update()
                     document.body.scrollTop = document.documentElement.scrollTop = 0
+                    console.log("update from next")
+                    update()
                 }
             }
 
             let previousPage = () => {
                 if (parseInt(pageSelector.value) > min) {
                     pageSelector.value = parseInt(pageSelector.value) - 1
+                    console.log("update from prev")
                     update()
                 }
             }
@@ -179,19 +185,43 @@
             let setPage = p =>  {
                 if (p >= min && p <= max) {
                     pageSelector.value = parseInt(p)
+                    console.log("update from setPage")
                     update()
                 }
             }
 
             let update = () => {
+                console.log("update called…")
                 const page = parseInt(pageSelector.value)
                 const number = offset + page
-                img.src = `pngs/${folder}/${folder}-${number}.png`
+                if (folder.match('/')) {
+                   const [suffix, f]= folder.split('/', 2)
+                   img.src = `pngs${suffix}/${f}/${f}-${number}.png`
+                } else {
+                    img.src = `pngs/${folder}/${folder}-${number}.png`
+                }
                 if (parseInt(chapters.value) !== page) {
                     chapters.value = null;
                 }
                 location.hash = `/${books.value}/${page}`
+                if (foldersMap[folder].length > 4 && foldersMap[folder][4][pageSelector.value]) {
+                    showErrors(foldersMap[folder][4][pageSelector.value])
+                } else {
+                    clearErrors()
+                }
                 document.title = `Bible de Sacy : ${books.selectedOptions[0].innerText} p. ${page}`
+            }
+
+            let showErrors = (errorArray) => {
+                console.log("ERROR DETECTED", errorArray)
+                const hashPart = location.hash.split('/', 2).join('/')
+                fautes.innerHTML = `Faute(s) à corriger : voir ` +
+                                    errorArray.map(p => `<a href="${[hashPart, p].join('/')}">page ${p}</a>`).join(", ") +
+                                    "."
+            }
+
+            let clearErrors = () => {
+                fautes.innerHTML = ''
             }
 
             pageSelector.addEventListener("change", update)

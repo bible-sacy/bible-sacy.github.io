@@ -1,6 +1,8 @@
 {
     "default": "preface_nouveau_testament",
     "books": [
+        ["genese_1", "Genèse (I-XIV)"],
+        ["genese_2", "Suite de la Genèse (XV-L)"],
         ["preface_nouveau_testament", "(Préface du Nouveau Testament)"],
         ["matthieu_1", "Matthieu"],
         ["marc", "Marc"],
@@ -33,6 +35,11 @@
         ["apocalypse", "Apocalypse"]
     ],
     "folders": {
+        "-at/1711_desprez_genese":
+        ["La Genèse", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711, "La_Genese_ak9PAAAAcAAJ.pdf", {
+            "808": [960]
+        }],
+
         "matthieu_1":
         ["Sainte Bible, Nouvelle Édition, Tome Premier Du Nouveau Testament", "Paris, Guillaume Desprez & Nîmes, Pierre Beaume", 1787, "bible_sacy_matthieu_1.pdf"],
 

@@ -27,7 +27,7 @@
         <div id="infoWindow" style="margin-top: 0.2em; margin-bottom: 0.4em; display: none; text-align: center;" >
             <hr/>
                 Page courante tirée de : <span style="font-style: italic;" id="bookInfo"></span>, <span id="editionInfo"></span>
-                <a id="pdfLink">(pdf original)</a>
+                <a id="pdfLink" target="_blank">(pdf original)</a>
                  <br/>
                  <a href="https://github.com/bible-sacy/bible-sacy.github.io/issues" target="_blank">rapporter une erreur</a>
                  &nbsp;|&nbsp;
@@ -64,7 +64,7 @@
         <script>
             //console.log("location.hash is", location.hash)
 
-            const PDFS_BASE = 'https://github.com/bible-sacy/pdfs/raw/master'
+            const PDFS_BASE = 'pdfs'
 
             window.addEventListener('popstate', () => {
                 if (location.hash && (m = location.hash.match(/#\/(.+)\/(.+)/))) {

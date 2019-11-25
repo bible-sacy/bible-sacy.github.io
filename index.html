@@ -117,6 +117,7 @@
             let min = null
             let pdf = null
             let foldersMap = null
+            let bookKeysMap = {}
 
             document.getElementById("page-form").addEventListener("submit", e => e.preventDefault())
             document.getElementById("book-form").addEventListener("submit", e => e.preventDefault())
@@ -130,6 +131,7 @@
             .then(index => {
                 index.books.forEach(value => {
                     books.options.add(new Option(value[1], value[0]))
+                    bookKeysMap[value[0]] = value[1]
                 })
                 foldersMap = index.folders
                 if (location.hash && (m = location.hash.match(/#\/(.+)\/(.+)/))) {
@@ -204,8 +206,19 @@
                     chapters.value = null;
                 }
                 location.hash = `/${books.value}/${page}`
-                if (foldersMap[folder].length > 4 && foldersMap[folder][4][pageSelector.value]) {
-                    showErrors(foldersMap[folder][4][pageSelector.value])
+                if (foldersMap[folder].length > 4) {
+                    let corrections = foldersMap[folder][4]
+                    let correctionPages = []
+                    for (let correctionPage in corrections) {
+                        if (corrections[correctionPage].find(p => p == page) !== undefined) {
+                            correctionPages.push(correctionPage)
+                        }
+                    }
+                    if (correctionPages.length > 0) {
+                        showErrors(correctionPages)
+                    } else {
+                        clearErrors()    
+                    }
                 } else {
                     clearErrors()
                 }
@@ -214,9 +227,8 @@
 
             let showErrors = (errorArray) => {
                 console.log("ERROR DETECTED", errorArray)
-                const hashPart = location.hash.split('/', 2).join('/')
                 fautes.innerHTML = `Faute(s) à corriger : voir ` +
-                                    errorArray.map(p => `<a href="${[hashPart, p].join('/')}">page ${p}</a>`).join(", ") +
+                                    errorArray.map(p => `<a href="#/${p}">${bookKeysMap[p.split('/')[0]]} page ${p.split('/')[1]}</a>`).join(", ") +
                                     "."
             }
 

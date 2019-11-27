@@ -1,6 +1,7 @@
 {
     "default": "preface_nouveau_testament",
     "books": [
+        ["preface_ancien_testament", "(Préface de l’Ancient Testament)"],
         ["genese_1", "Genèse (I-XIV)"],
         ["genese_2", "Suite de la Genèse (XV-L)"],
         ["preface_nouveau_testament", "(Préface du Nouveau Testament)"],
@@ -35,6 +36,12 @@
         ["apocalypse", "Apocalypse"]
     ],
     "folders": {
+        "-at/1781_beaume_at_t1_p_manquante":
+        ["Sainte Bible, Nouvelle Édition, Tome Premier", "Paris, Guillaume Desprez & Nîmes, Pierre Beaume", 1781,
+            "Préface_Générale_La_Genèse_2DqNCaDbrBAC_page_manquante_dans_genèse.pdf", {
+
+        }],
+
         "-at/1711_desprez_genese":
         ["La Genèse", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,
             "La_Genese_ak9PAAAAcAAJ.pdf", {

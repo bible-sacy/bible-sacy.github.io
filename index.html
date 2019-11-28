@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="QEHugPIPzX5vDvVdc4EOzFn4Q-L5lSUP60V2q6FjkBY" />
     <title>Bible de Sacy</title>
+    <style>
+    .darkmode--activated  img {
+        filter: invert(100%);
+    }
+    </style>
   </head>
   <body style="margin-bottom: 0px">
       <div id="main" style="margin: auto; text-align: center;">
@@ -260,6 +265,15 @@
             document.getElementById("next").addEventListener("click", nextPage)
             document.getElementById("prev").addEventListener("click", previousPage)
 
+        </script>
+        <script src="darkmode-js.min.js"></script>
+        <script>
+        new Darkmode({
+            bottom: 'unset',
+            right: 'unset',
+            left: '32px',
+            label: '🌓'
+        }).showWidget();
         </script>
   </body>
 </html>

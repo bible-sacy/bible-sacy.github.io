@@ -4,6 +4,7 @@
         ["preface_ancien_testament", "(Préface de l’Ancient Testament)"],
         ["genese_1", "Genèse (I-XIV)"],
         ["genese_2", "Suite de la Genèse (XV-L)"],
+        ["isaie", "Isaïe"],
         ["preface_nouveau_testament", "(Préface du Nouveau Testament)"],
         ["matthieu_1", "Matthieu"],
         ["marc", "Marc"],
@@ -46,6 +47,12 @@
         ["La Genèse", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,
             "La_Genese_ak9PAAAAcAAJ.pdf", {
             "genese_2/960": [808]
+        }],
+
+        "-at/1724_fricx_isaie":
+        ["Isaïe", "Bruxelles, Eugène Henry Fricx", 1724,
+            "bible_sacy_isaie.pdf", {
+
         }],
 
         "matthieu_1":

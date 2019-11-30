@@ -5,6 +5,7 @@
         ["genese_1", "Genèse (I-XIV)"],
         ["genese_2", "Suite de la Genèse (XV-L)"],
         ["isaie", "Isaïe"],
+        ["job", "Job"],
         ["preface_nouveau_testament", "(Préface du Nouveau Testament)"],
         ["matthieu_1", "Matthieu"],
         ["marc", "Marc"],
@@ -47,6 +48,12 @@
         ["La Genèse", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,
             "La_Genese_ak9PAAAAcAAJ.pdf", {
             "genese_2/960": [808]
+        }],
+
+        "-at/1695_desprez_job_3ed":
+        ["Job", "Bruxelles, Eugène Henry Fricx", 1713,
+            "1695_desprez_job_3ed.pdf", {
+
         }],
 
         "-at/1724_fricx_isaie":

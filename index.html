@@ -210,7 +210,11 @@
                     })
                     bookInfo.innerText = foldersMap[folder][0]
                     editionInfo.innerText = foldersMap[folder][1] + ", " + foldersMap[folder][2]
-                    pdfLink.href = `${PDFS_BASE}/${pdf}`
+                    if (pdf && pdf.startsWith("-")) {
+                        pdfLink.href = `${PDFS_BASE}${pdf}`
+                    } else {
+                        pdfLink.href = `${PDFS_BASE}/${pdf}`
+                    }
                     console.log("setPage from useBook")
                     setPage(page ? page : json.chapters[0][1])
                 })

@@ -10,6 +10,11 @@
         ["nombres", "Les Nombres"],
         ["deuteronome", "Le Deutéronome"],
 
+        ["rois_1", "1 Rois"],
+        ["rois_2", "2 Rois"],
+        ["rois_3", "3 Rois"],
+        ["rois_4", "4 Rois"],
+
         ["job", "Job"],
         ["pseaumes_t1", "Pseaumes (I-LIV)"],
         ["pseaumes_t2", "Pseaumes (LV-CIII)"],
@@ -88,6 +93,21 @@
         "-at/1719_fricx_deuteronome":
         ["Le Deutéronome", "Bruxelles, Eugène Henry Fricx", 1700,
             "1719_fricx_deuteronome_x-l3XmsuzmkC.pdf", {
+
+            }
+        ],
+
+        "-at-2/1711_desprez_rois_1_2":
+        ["Les deux premiers livres des Rois", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,
+            "-2/1711_desprez_rois_1_2_QlJPAAAAcAAJ.pdf", {
+
+            }
+        ],
+
+
+        "-at-2/1700_fricx_rois_3_4":
+        ["Les deux derniers livres des Rois", "Bruxelles, Eugène Henry Fricx", 1700,
+            "-2/1700_fricx_rois_3_4_RRg-AAAAcAAJ.pdf", {
 
             }
         ],

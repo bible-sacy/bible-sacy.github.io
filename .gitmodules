@@ -1,6 +1,10 @@
 [submodule "pdfs"]
 	path = pdfs
 	url = https://github.com/bible-sacy/pdfs.git
+
+[submodule "pdfs-2"]
+	path = pdfs-2
+	url = https://github.com/bible-sacy/pdfs-2.git
 	
 [submodule "pngs-at"]
 	path = pngs-at

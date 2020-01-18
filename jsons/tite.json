@@ -1,0 +1,12 @@
+{
+    "folder": "-nt-2/timothee_tite",
+    "offset": 21,
+    "max": 341,
+    "min": 282,
+    "chapters": [
+        ["avis", 282],
+        [1, 285],
+        [2, 305],
+        [3, 322]
+    ]
+}

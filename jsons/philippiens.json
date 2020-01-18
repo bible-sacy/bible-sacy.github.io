@@ -1,0 +1,13 @@
+{
+    "folder": "-nt-2/galates_ephesiens",
+    "offset": 21,
+    "max": 492,
+    "min": 370,
+    "chapters": [
+        ["avis", 370],
+        [1, 373],
+        [2, 409],
+        [3, 441],
+        [4, 473]
+    ]
+}

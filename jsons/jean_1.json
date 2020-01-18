@@ -1,0 +1,14 @@
+{
+    "folder": "-nt-2/epitres_catholiques",
+    "offset": 29,
+    "max": 536,
+    "min": 385,
+    "chapters": [
+        ["argument", 385],
+        [1, 393],
+        [2, 408],
+        [3, 448],
+        [4, 480],
+        [5, 508]
+    ]
+}

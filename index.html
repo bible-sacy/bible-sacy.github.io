@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <link id="canonical" rel="canonical" href="https://bible.sacy.be/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="QEHugPIPzX5vDvVdc4EOzFn4Q-L5lSUP60V2q6FjkBY" />
+    <title>Bible de Sacy, ou de Port-Royal</title>
+    <style>
+    .darkmode--activated  img {
+        filter: invert(100%);
+    }
+    </style>
+  </head>
+  <body style="margin-bottom: 0px">
+      <div id="main" style="margin: auto; text-align: center;">
+
+        <div style="text-align: center; margin-left: auto; margin-right: auto; margin-bottom: 0.5em;">
+            <select name="sites" id="sites">
+                <option value="https://bible.sacy.be" selected>Bible de Sacy</option>
+                <option value="https://heures.sacy.be">Heures de Port-Royal</option>
+                <option value="https://royaumont.sacy.be">Bible de Royaumont</option>
+            </select>
+            |       
+            <form id="book-form" style="display: inline">
+                <label for="books">Livre</label>
+                <select name="books" id="books">
+                </select>
+                |
+                <label for="chapters">Chapitre</label>
+                <select name="chapters" id="chapters">
+                </select>
+                |
+                <button id="displayInfo"><span id="infoIcon">ℹ</span>&nbsp;info</button>
+            </form>
+        </div>
+        <div id="infoWindow" style="margin-top: 0.2em; margin-bottom: 0.4em; display: none; text-align: center;" >
+            <hr/>
+                Page courante tirée de : <span style="font-style: italic;" id="bookInfo"></span>, <span id="editionInfo"></span>
+                <a id="pdfLink" target="_blank">(pdf original)</a>
+                 <br/>
+                 <a href="https://github.com/bible-sacy/bible-sacy.github.io/issues" target="_blank">rapporter une erreur</a>
+                 &nbsp;|&nbsp;
+                 <a href="https://github.com/bible-sacy/bible-sacy.github.io" target="_blank">code source du site web</a>
+                 &nbsp;|&nbsp;
+                 <a href="https://github.com/bible-sacy/bible-sacy.github.io/blob/master/README.md#conditions-dutilisation" target="_blank">conditions d’utilisation</a>
+                 &nbsp;|&nbsp;
+                 <a href="https://www.sacy.be" target="_blank">autres œuvres de Port-Royal</a>
+                 <br/>
+                 <button id="hideInfo" style="margin-top: 0.3em;"><small>❌&nbsp;cacher ces informations</small></button>
+              </div>      
+        <hr/>
+        <div style="text-align: center; margin-left: auto; margin-right: auto;">
+            <button id="prev-top" style="width: 25%; font-weight: bold;">&larr;</button>
+            &nbsp;
+            <form id="page-form" style="display: inline">
+                    <label for="pages">Page</label>&nbsp;<input type="number" id="pages" name="pages"/>
+            </form>
+            &nbsp;
+            <button id="next-top" style="width: 25%; font-weight: bold;">&rarr;</button>
+        </div>
+
+        <div id="fautes" style="margin-top: 0.2em; font-weight: bold; font-size: larger;"></div>
+
+        <div class="image">
+            <img id="page" style="max-width: 50em; width: 100%; min-width: 20em;"/>
+        </div>
+
+        <div style="text-align: center; margin: auto;">
+                <button id="prev-bottom" style="width: 30%; font-weight: bold;">&larr;</button>
+                &nbsp;&nbsp;
+                <button id="next-bottom" style="width: 30%; font-weight: bold;">&rarr;</button>
+            </div>
+    
+      </div>
+        <script>
+            //console.log("location.hash is", location.hash)
+
+            const CANONICAL = 'https://bible.sacy.be'
+            const canonical = document.getElementById("canonical")
+
+            {
+                // Redirect to the canonical website if hosted on github.io
+                const ALWAYS_REDIRECT = false
+                const REDIRECT_IF_GITHUB = false
+                if (ALWAYS_REDIRECT || (REDIRECT_IF_GITHUB && location.hostname.endsWith('github.io'))) {
+                    canonical.setAttribute('href', `${CANONICAL}/${location.hash}`)
+                    const meta =  document.createElement('meta')
+                    meta.httpEquiv = 'refresh'
+                    meta.content = `0; URL=${CANONICAL}/${location.hash}`
+                    document.getElementsByTagName('head')[0].appendChild(meta)
+                }
+            }
+
+            const BASE = ''
+            const PDFS_BASE = `${BASE}pdfs`
+
+            window.addEventListener('popstate', () => {
+                if (location.hash && (m = location.hash.match(/#\/(.+)\/(.+)/))) {
+                    let newBook = m[1]
+                    let newPage = m[2]
+                    if (newBook !== books.value) {
+                        books.value = newBook
+                        if (!books.value) {
+                            currentBook = newBook
+                        }
+                        useBook(newBook, newPage)
+                    } else if (newPage !== pageSelector.value) {
+                        console.log("setPage from popState with newPage ", newPage )
+                        setPage(newPage)
+                    }
+                }
+            })
+
+            const img = document.getElementById("page")
+            const chapters = document.getElementById("chapters")
+            const pageSelector = document.getElementById("pages")
+            const books = document.getElementById("books")
+            const pdfLink = document.getElementById("pdfLink")
+            const bookInfo = document.getElementById("bookInfo")
+            const editionInfo = document.getElementById("editionInfo")
+            const displayInfo = document.getElementById("displayInfo")
+            const infoIncon = document.getElementById("infoIcon")
+            const hideInfo = document.getElementById("hideInfo")
+            const infoWindow = document.getElementById("infoWindow")
+            const fautes = document.getElementById("fautes")
+            const nextTop = document.getElementById("next-top")
+            const nextBottom = document.getElementById("next-bottom")
+            const prevTop = document.getElementById("prev-top")
+            const prevBottom = document.getElementById("prev-bottom")
+            const sites = document.getElementById("sites")
+
+            sites.addEventListener("change", ev => {
+                ev.preventDefault()
+                window.location = sites.selectedOptions[0].value
+            })
+
+            let infoShown = false
+
+            const toggleInfo = (ev) => {
+                ev.preventDefault()
+                if (infoShown) {
+                    infoIcon.innerText = 'ℹ'
+                    infoWindow.style.display = 'none'
+                } else {
+                    infoWindow.style.display = ''
+                    infoIcon.innerText = '❌'
+                }
+                infoShown = !infoShown
+            }
+
+            displayInfo.addEventListener("click", toggleInfo)
+
+            hideInfo.addEventListener("click", toggleInfo)
+
+            let folder = null
+            let offset = null
+            let max = null
+            let min = null
+            let pdf = null
+            let foldersMap = null
+            let bookKeysMap = {}
+            let bookList = []
+            let currentBook = null
+
+            document.getElementById("page-form").addEventListener("submit", e => e.preventDefault())
+            document.getElementById("book-form").addEventListener("submit", e => e.preventDefault())
+            
+            books.addEventListener("change", e => {
+                useBook(books.value, null)
+            })
+
+            fetch(`${BASE}index.json`)
+            .then(response => response.json())
+            .then(index => {
+                index.books.forEach(value => {
+                    books.options.add(new Option(value[1], value[0]))
+                    bookKeysMap[value[0]] = value[1]
+                    bookList.push(value[0])
+                })
+                foldersMap = index.folders
+                if (location.hash && (m = location.hash.match(/#\/(.+)\/(.+)/))) {
+                    books.value = m[1]
+                    useBook(m[1], m[2])
+                    if (!books.value) {
+                        currentBook = m[1]
+                    }
+                } else {
+                    books.value = index.default
+                    useBook(index.default, null)    
+                }
+            })
+
+            
+
+            let useBook = (nameArg, page) => fetch(`${BASE}jsons/${nameArg}.json`)
+                .then(response => response.json())
+                .then(json => {
+                    //console.log("json is ", json)
+                    folder = json.folder
+                    pdf = foldersMap[folder][3]
+                    offset = json.offset
+                    max = json.max
+                    min = json.min
+                    pages.min = min
+                    pages.max = max
+                    while (chapters.options.length) chapters.remove(0);
+                    json.chapters.forEach(value => {
+                        chapters.options.add(new Option(value[0], value[1]))
+                    })
+                    bookInfo.innerText = foldersMap[folder][0]
+                    editionInfo.innerText = foldersMap[folder][1] + ", " + foldersMap[folder][2]
+                    pdfLink.href = `${PDFS_BASE}/${pdf}`
+                    console.log("setPage from useBook")
+                    setPage(page ? page : json.chapters[0][1])
+                })
+
+            let nextPage = () => {
+                if (parseInt(pageSelector.value) < max) {
+                    pageSelector.value = parseInt(pageSelector.value) + 1
+                    document.body.scrollTop = document.documentElement.scrollTop = 0
+                    console.log("update from next")
+                    update()
+                } else {
+                    let bookIdx = bookList.indexOf(books.value)
+                    if (bookIdx < bookList.length - 1) {
+                        books.value = bookList[bookIdx + 1]
+                        useBook(books.value, 'min')
+                    }
+                }
+            }
+
+            let previousPage = () => {
+                if (parseInt(pageSelector.value) > min) {
+                    pageSelector.value = parseInt(pageSelector.value) - 1
+                    console.log("update from prev")
+                    update()
+                } else {
+                    let bookIdx = bookList.indexOf(books.value)
+                    if (bookIdx > 0) {
+                        books.value = bookList[bookIdx - 1]
+                        useBook(books.value, 'max')
+                    }
+                }
+            }
+
+            let setPage = p =>  {
+                if (p === 'max') {
+                    pageSelector.value = max
+                    console.log("update from setPage")
+                    update()
+                } else if (p === 'min') {
+                    pageSelector.value = min
+                    console.log("update from setPage")
+                    update()
+                } else if (p >= min && p <= max) {
+                    pageSelector.value = parseInt(p)
+                    console.log("update from setPage")
+                    update()
+                }
+            }
+
+            let update = () => {
+                console.log("update called…")
+                sites.value = CANONICAL
+                const page = parseInt(pageSelector.value)
+                const number = offset + page
+                if (folder.match('/')) {
+                   const [suffix, f]= folder.split('/', 2)
+                   img.src = `${BASE}pngs${suffix}/${f}/${f}-${number}.png`
+                } else {
+                    img.src = `${BASE}pngs/${folder}/${folder}-${number}.png`
+                }
+                if (parseInt(chapters.value) !== page) {
+                    chapters.value = null;
+                }
+                if (books.value) {
+                    location.hash = `/${books.value}/${page}`
+                } else {
+                    location.hash = `/${currentBook}/${page}`
+                }
+                canonical.setAttribute('href', `${CANONICAL}/${location.hash}`)
+                if (foldersMap[folder].length > 4) {
+                    let corrections = foldersMap[folder][4]
+                    let correctionPages = []
+                    for (let correctionPage in corrections) {
+                        if (corrections[correctionPage].find(p => p == page) !== undefined) {
+                            correctionPages.push(correctionPage)
+                        }
+                    }
+                    if (correctionPages.length > 0) {
+                        showErrors(correctionPages)
+                    } else {
+                        clearErrors()    
+                    }
+                } else {
+                    clearErrors()
+                }
+                if (books.selectedOptions[0]) {
+                    document.title = `Bible de Sacy, ou de Port-Royal : ${books.selectedOptions[0].innerText} p. ${page}`
+                }
+            }
+
+            let showErrors = (errorArray) => {
+                console.log("ERROR DETECTED", errorArray)
+                fautes.innerHTML = `Faute(s) à corriger : voir ` +
+                                    errorArray.map(p => `<a href="#/${p}">${bookKeysMap[p.split('/')[0]]} page ${p.split('/')[1]}</a>`).join(", ") +
+                                    "."
+            }
+
+            let clearErrors = () => {
+                fautes.innerHTML = ''
+            }
+
+            pageSelector.addEventListener("change", update)
+
+            chapters.addEventListener("change", event => {
+                // console.log("event is ", event)
+                setPage(chapters.value)
+            })
+
+
+
+            document.addEventListener('keydown', event => {
+                // console.log("event is ", event)
+                switch(event.key) {
+                    case 'ArrowRight':
+                        nextPage()
+                        break
+                    case 'ArrowLeft':
+                        previousPage()
+                        break
+                }
+            })
+            
+            nextTop.addEventListener("click", nextPage)
+            nextBottom.addEventListener("click", nextPage)
+            prevTop.addEventListener("click", previousPage)
+            prevBottom.addEventListener("click", previousPage)
+
+        </script>
+        <script src="darkmode-js.min.js"></script>
+        <script>
+        new Darkmode({
+            bottom: 'unset',
+            right: 'unset',
+            left: '32px',
+            label: '🌓'
+        }).showWidget();
+        </script>
+  </body>
+</html>

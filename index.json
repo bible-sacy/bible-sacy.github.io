@@ -1,0 +1,264 @@
+{
+    "default": "preface_nouveau_testament",
+    "books": [
+        ["preface_ancien_testament", "(Préface de l’Ancient Testament)"],
+
+        ["genese_1", "La Genèse (I-XIV)"],
+        ["genese_2", "Suite de la Genèse (XV-L)"],
+        ["exode", "L’Exode"],
+        ["levitique", "Le Lévitique"],
+        ["nombres", "Les Nombres"],
+        ["deuteronome", "Le Deutéronome"],
+
+        ["job", "Job"],
+        ["pseaumes_t1", "Pseaumes (I-LIV)"],
+        ["pseaumes_t2", "Pseaumes (LV-CIII)"],
+        ["pseaumes_t3", "Pseaumes (CIV-CL)"],
+        ["proverbes", "Les Proverbes de Salomon"],
+        ["ecclesiaste", "L’Ecclésiaste de Salomon"],
+        ["sagesse", "La Sagesse"],
+        ["cantique", "Cantique des Cantiques"],
+        ["ecclesiastique", "L’Ecclésiastique"],
+
+        ["isaie", "Isaïe"],
+
+        ["preface_nouveau_testament", "(Préface du Nouveau Testament)"],
+
+        ["matthieu_1", "Matthieu"],
+        ["marc", "Marc"],
+        ["luc", "Luc"],
+        ["jean", "Jean"],
+
+        ["actes_des_apotres", "Actes des Apôtres"],
+
+        ["preface_epitres_saint_paul", "(Préface des épîtres de Saint Paul)"],
+        ["romains", "Romains"],
+        ["corinthiens_1n", "1 Corinthiens"],
+        ["corinthiens_2n", "2 Corinthiens"],
+        ["galates", "Galates"],
+        ["ephesiens", "Éphésiens"],
+        ["philippiens", "Philippiens"],
+        ["colossiens", "Colossiens"],
+        ["thessaloniciens_1", "1 Thessaloniciens"],
+        ["thessaloniciens_2", "2 Thessaloniciens"],
+        ["timothee_1", "1 Timothée"],
+        ["timothee_2", "2 Timothée"],
+        ["tite", "Tite"],
+        ["philemon", "Philémon"],
+        ["hebreux", "Hébreux"],
+
+        ["preface_epitres_catholiques", "(Préface des épîtres catholiques)"],
+        ["jacques", "Jacques"],
+        ["pierre_1", "1 Pierre"],
+        ["pierre_2", "2 Pierre"],
+        ["jean_1", "1 Jean"],
+        ["jean_2", "2 Jean"],
+        ["jean_3", "3 Jean"],
+        ["jude", "Jude"],
+
+        ["apocalypse", "Apocalypse"]
+    ],
+    "folders": {
+        "-at/1781_beaume_at_t1_p_manquante":
+        ["Sainte Bible, Nouvelle Édition, Tome Premier", "Paris, Guillaume Desprez & Nîmes, Pierre Beaume", 1781,
+            "Préface_Générale_La_Genèse_2DqNCaDbrBAC_page_manquante_dans_genèse.pdf", {
+
+        }],
+
+        "-at/1711_desprez_genese":
+        ["La Genèse", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,
+            "La_Genese_ak9PAAAAcAAJ.pdf", {
+            "genese_2/960": [808]
+        }],
+
+        "-at/1727_fricx_exode_levitique":
+        ["L’Exode et Le Lévitique", "Bruxelles, Eugène Henry Fricx", 1727,
+            "1727_fricx_exode_levitique_cwoPAAAAQAAJ.pdf", {
+
+            }
+        ],
+
+        "-at/1725_fricx_nombres":
+        ["Les Nombres", "Bruxelles, Eugène Henry Fricx", 1725,
+            "1725_fricx_nombres_lVs64Q-4uQAC.pdf", {
+                
+            }
+        ],
+
+        "-at/1719_fricx_deuteronome":
+        ["Le Deutéronome", "Bruxelles, Eugène Henry Fricx", 1700,
+            "1719_fricx_deuteronome_x-l3XmsuzmkC.pdf", {
+
+            }
+        ],
+
+        "-at/1695_desprez_job_3ed":
+        ["Job", "Bruxelles, Eugène Henry Fricx", 1713,
+            "1695_desprez_job_3ed.pdf", {
+
+        }],
+
+        "-at/1711_desprez_pseaumes_t1":
+        ["Les Pseaumes de David, Tome Premier", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,
+            "1711_desprez_pseaumes_t1_X8BDIYsLeEAC.pdf", {
+                
+        }],
+
+        "-at/1710_fricx_pseaumes":
+        ["Les Pseaumes de David, Tome Second", "Bruxelles, Eugène Henry Fricx", 1710,
+            "1710_fricx_pseaumes_t2_YEEGt7yPXioC.pdf", {
+                
+        }],
+
+        "-at/1690_desprez_pseaumes_t3":
+        ["Les Pseaumes de David, Tome Troisième", "Paris, Guillaume Desprez", 1690,
+            "1690_desprez_pseaumes_t3_3tlwDX13xE8C.pdf", {
+
+        }],
+
+        "-at/1727_fricx_proverbes":
+        ["Les Proverbes de Salomon", "Bruxelles, Eugène Henry Fricx", 1727,
+            "1727_fricx_proverbes_S6irBNDzHmgC.pdf", {
+
+            }
+        ],
+
+        "-at/1711_desprez_ecclesiaste":
+        ["L’Ecclésiaste de Salomon (suivi de La Sagesse)", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,
+            "1711_desprez_ecclesiaste_MlNPAAAAcAAJ.pdf", {
+
+            }
+        ],
+
+        "-at/1715_fricx_cantique":
+        ["Cantique des Cantiques", "Bruxelles, Eugène Henry Fricx", 1715,
+            "1715_fricx_cantique_gNSVRkWDgQ4C.pdf", {
+
+            }
+        ],
+
+        "-at/1700_fricx_ecclesiastique":
+        ["L’Ecclésiastique", "Bruxelles, Eugène Henry Fricx", 1700,
+            "1700_fricx_ecclesiastique_VgpcAAAAQAAJ.pdf", {
+
+            }
+        ],
+
+        "-at/1724_fricx_isaie":
+        ["Isaïe", "Bruxelles, Eugène Henry Fricx", 1724,
+            "bible_sacy_isaie.pdf", {
+
+        }],
+
+        "-nt-1/matthieu_1":
+        ["Sainte Bible, Nouvelle Édition, Tome Premier Du Nouveau Testament", "Paris, Guillaume Desprez & Nîmes, Pierre Beaume", 1787,
+            "bible_sacy_matthieu_1.pdf", {
+            
+        }],
+
+        "-nt-1/marc_et_luc":
+        ["Sainte Bible, Nouvelle Édition, Tome Second Du Nouveau Testament", "Paris, Guillaume Desprez & Nîmes, Pierre Beaume", 1787,
+            "bible_sacy_marc_et_luc.pdf", {
+
+        }],
+
+        "-nt-1/jean":
+        ["Sainte Bible, Nouvelle Édition, Tome Troisième Du Nouveau Testament", "Nîmes, Pierre Beaume", 1788,
+            "bible_sacy_jean.pdf", {
+    
+        }],
+
+        "-nt-1/actes_des_apotres":
+        ["Les Actes des Apostres", "Paris, Guillaume Desprez", 1714,
+            "bible_sacy_actes_des_apotres.pdf", {
+
+        }],
+
+        "-nt-1/romains_corinthiens_1_new":
+        ["Sainte Bible, Nouvelle Édition, Tome Cinquième Du Nouveau Testament", "Nîmes, Pierre Beaume", 1788,
+            "Epitre_de_Saint_Paul_aux_romains_et_prem_p6KcZkoQH9MC.pdf", {
+
+        }],
+
+        "-nt-1/romains_corinthiens_1":
+        ["Sainte Bible, Nouvelle Édition, Tome Cinquième Du Nouveau Testament", "Nîmes, Pierre Beaume", 1788,
+            "bible_sacy_romains_corinthiens_1.pdf", {
+
+        }],
+
+        "-nt-2/1708_desprez_epistres_paul_t2":
+        ["Épistres de Saint Paul, Tome Second", "Paris, Guillaume Desprez", 1708,
+            "1708_desprez_epistres_paul_t2_TmxTAAAAcAAJ.pdf", {
+                "corinthiens_2n/886": [
+                    23,     410,
+                    26,     428,
+                    27,     437,
+                    42,     458,
+                    43,
+                    46,     460,
+                    47,     487,
+                    57,     494,
+                    100,    511,
+                    118,    527,
+                    119,    607,
+                    185,    655,
+                    212,    668,
+                    314,    670,
+                    366,    708,
+                    373,    754,
+                    380,    815,
+                    403
+                ]
+        }],
+
+        "-nt-2/corinthiens_2":
+        ["Épistres de Saint Paul, Tome Second, Partie II", "Bruxelles, Eugène Henry Fricx", 1709,
+            "bible_sacy_corinthiens_2.pdf", {
+
+        }],
+
+        "-nt-2/galates_ephesiens":
+        ["Épistres de Saint Paul aux Galates, Éphésiens, Philippiens, Colossiens, & Thessaloniciens", "Paris, Guillaume Desprez", 1708,
+            "bible_sacy_paul_galates_ephesiens.pdf", {
+                "thessaloniciens_2/806": [
+                    9, 12, 14, 24, 28, 50, 70, 81, 84, 85, 86, 87, 89,
+                    126, 142, 174, 184, 206, 223, 228, 249, 252, 270,
+                    286, 292, 321, 339, 350, 365, 408, 444, 460, 528,
+                    552, 554, 569, 577, 609, 633, 639, 664, 673, 702
+                ]
+        }],
+
+        "-nt-2/timothee_tite":
+        ["Épistres de Saint Paul à Timothée, à Tite, à Philémon, & aux Hébreux", "Bruxelles, Eugène Henry Fricx", 1709,
+            "bible_sacy_timothee_tite.pdf", {
+
+        }],
+
+        "-nt-2/hebreux":
+        ["Épistres de Saint Paul à Timothée, à Tite, à Philémon, & aux Hébreux", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,
+            "bible_sacy_hebreux.pdf", {
+                "hebreux/830": [
+                    6, 16, 21, 53, 67, 108, 113, 125, 139, 155, 185, 187,
+                    197, 208, 219, 244, 369, 388, 394, 423, 459, 503, 508,
+                    560, 571, 581, 680, 687, 697, 703, 719, 729, 751, 763
+                ]
+        }],
+
+        "-nt-2/epitres_catholiques":
+        ["Épistres Catholiques", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,
+            "bible_sacy_epitres_catholiques.pdf", {
+                "jude/636": [
+                    2, 13, 37, 39, 42, 47, 56, 61, 69, 73, 92, 95, 99,
+                    112, 116, 117, 118, 120, 124, 145, 165, 188, 219,
+                    231, 313, 342, 354, 363, 392, 397, 410, 418, 419, 431,
+                    437, 444, 461, 497, 542, 548
+                ]
+        }],
+
+        "-nt-2/epitres_catholiques_apocalypse":
+        ["Sainte Bible, Nouvelle Édition, Tome Huitième Du Nouveau Testament", "Nîmes, Pierre Beaume", 1789,
+            "bible_sacy_epitres_catholiques_et_apocalypse.pdf", {
+                
+        }]
+    }
+}

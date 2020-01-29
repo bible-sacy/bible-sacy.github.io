@@ -26,6 +26,7 @@
         ["ecclesiastique", "L’Ecclésiastique"],
 
         ["isaie", "Isaïe"],
+        ["daniel", "Daniel"],
 
         ["preface_nouveau_testament", "(Préface du Nouveau Testament)"],
 
@@ -167,6 +168,12 @@
         "-at/1724_fricx_isaie":
         ["Isaïe", "Bruxelles, Eugène Henry Fricx", 1724,
             "bible_sacy_isaie.pdf", {
+
+        }],
+
+        "-at-2/1700_fricx_daniel":
+        ["Daniel", "Bruxelles, Eugène Henry Fricx", 1700,
+            "1700_fricx_daniel_kQpcAAAAQAAJ.pdf", {
 
         }],
 

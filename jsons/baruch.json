@@ -1,0 +1,18 @@
+{
+    "folder": "-at-2/1724_fricx_jeremie",
+    "offset": 829,
+    "min": -5,
+    "max": 92,
+    "chapters": [
+        ["titre", -5],
+        ["avertissement", -3],
+        [1, 1],
+        [2, 11],
+        [3, 25],
+        [4, 37],
+        [5, 54],
+        [6, 62],
+        ["privilège", 86],
+        ["table", 87]
+    ]
+}

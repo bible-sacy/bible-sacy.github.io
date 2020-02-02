@@ -26,6 +26,9 @@
         ["ecclesiastique", "L’Ecclésiastique"],
 
         ["isaie", "Isaïe"],
+        ["jeremie", "Jérémie"],
+        ["lamentations", "Lamentations de Jérémie"],
+        ["baruch", "Baruch"],
         ["ezechiel", "Ézéchiel"],
         ["daniel", "Daniel"],
 
@@ -169,6 +172,12 @@
         "-at/1724_fricx_isaie":
         ["Isaïe", "Bruxelles, Eugène Henry Fricx", 1724,
             "bible_sacy_isaie.pdf", {
+
+        }],
+
+        "-at-2/1724_fricx_jeremie":
+        ["Jérémie", "Bruxelles, Eugène Henry Fricx", 1724,
+            "-2/1724_fricx_jeremie_RWl7qjHQxWQC.pdf", {
 
         }],
 

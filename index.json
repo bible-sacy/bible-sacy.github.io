@@ -45,6 +45,9 @@
         ["zacharie", "Zacharie"],
         ["malachie", "Malachie"],
 
+        ["machabees_1", "1 Machabées"],
+        ["machabees_2", "2 Machabées"],
+
         ["preface_nouveau_testament", "(Préface du Nouveau Testament)"],
 
         ["matthieu_1", "Matthieu"],
@@ -209,6 +212,12 @@
         "-at-2/1720_fricx_petits_prophetes":
         ["Les douze petits Prophètes", "Bruxelles, Eugène Henry Fricx", 1720,
             "-2/1720_fricx_petits_prophetes_iwkpyAEACAAJ.pdf", {
+
+        }],
+
+        "-at-2/1717_fricx_machabees":
+        ["Les Machabées", "Bruxelles, Eugène Henry Fricx", 1717,
+            "-2/1717_fricx_machabees_qVogag83yg0C.pdf", {
 
         }],
 

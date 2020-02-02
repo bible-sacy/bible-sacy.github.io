@@ -26,6 +26,7 @@
         ["ecclesiastique", "L’Ecclésiastique"],
 
         ["isaie", "Isaïe"],
+        ["ezechiel", "Ézéchiel"],
         ["daniel", "Daniel"],
 
         ["preface_nouveau_testament", "(Préface du Nouveau Testament)"],
@@ -174,6 +175,12 @@
         "-at-2/1700_fricx_daniel":
         ["Daniel", "Bruxelles, Eugène Henry Fricx", 1700,
             "-2/1700_fricx_daniel_kQpcAAAAQAAJ.pdf", {
+
+        }],
+
+        "-at-2/1717_fricx_ezechiel":
+        ["Ézéchiel", "Bruxelles, Eugène Henry Fricx", 1717,
+            "-2/1717_fricx_ezechiel_hOcYiDL86CMC.pdf", {
 
         }],
 

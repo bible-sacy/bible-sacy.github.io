@@ -1,0 +1,14 @@
+{
+    "folder": "-at-2/1720_fricx_petits_prophetes",
+    "offset": 33,
+    "min": 665,
+    "max": 736,
+    "chapters": [
+        ["titre", 665],
+        [1, 666],
+        [2, 679],
+        [3, 691],
+        [4, 702],
+        ["table", 709]
+    ]
+}

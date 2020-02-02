@@ -31,6 +31,19 @@
         ["baruch", "Baruch"],
         ["ezechiel", "Ézéchiel"],
         ["daniel", "Daniel"],
+        ["preface_petits_prophetes", "(Préface des petits Prophètes)"],
+        ["osee", "Osée"],
+        ["joel", "Joël"],
+        ["amos", "Amos"],
+        ["abdias", "Abdias"],
+        ["jonas", "Jonas"],
+        ["michee", "Michée"],
+        ["nahum", "Nahum"],
+        ["habacuc", "Habacuc"],
+        ["sophonie", "Sophonie"],
+        ["aggee", "Aggée"],
+        ["zacharie", "Zacharie"],
+        ["malachie", "Malachie"],
 
         ["preface_nouveau_testament", "(Préface du Nouveau Testament)"],
 
@@ -190,6 +203,12 @@
         "-at-2/1717_fricx_ezechiel":
         ["Ézéchiel", "Bruxelles, Eugène Henry Fricx", 1717,
             "-2/1717_fricx_ezechiel_hOcYiDL86CMC.pdf", {
+
+        }],
+
+        "-at-2/1720_fricx_petits_prophetes":
+        ["Les douze petits Prophètes", "Bruxelles, Eugène Henry Fricx", 1720,
+            "-2/1720_fricx_petits_prophetes_iwkpyAEACAAJ.pdf", {
 
         }],
 

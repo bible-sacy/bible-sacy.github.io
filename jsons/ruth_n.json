@@ -1,0 +1,16 @@
+{
+    "folder": "-at-2/1728_desprez_josue",
+    "offset": 15,
+    "min": 659,
+    "max": 718,
+    "chapters": [
+        ["avertissement", 659],
+        [1, 661],
+        [2, 671],
+        [3, 681],
+        [4, 689],
+        ["approbations", 700],
+        ["table", 701],
+        ["privilège", 709]
+    ]
+}

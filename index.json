@@ -10,6 +10,10 @@
         ["nombres", "Les Nombres"],
         ["deuteronome", "Le Deutéronome"],
 
+        ["josue", "Josué"],
+
+        ["ruth", "Ruth"],
+
         ["rois_1", "1 Rois"],
         ["rois_2", "2 Rois"],
         ["rois_3", "3 Rois"],
@@ -117,6 +121,12 @@
 
             }
         ],
+
+        "-at-2/1711_desprez_josue":
+        ["Josué", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,
+            "-2/1711_desprez_josue_IlJPAAAAcAAJ.pdf", {
+
+        }],
 
         "-at-2/1711_desprez_rois_1_2":
         ["Les deux premiers livres des Rois", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,

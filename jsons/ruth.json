@@ -1,0 +1,16 @@
+{
+    "folder": "-at-2/1711_desprez_josue",
+    "offset": 465,
+    "min": 355,
+    "max": 417,
+    "chapters": [
+        ["titre", 355],
+        ["avertissement", 357],
+        [1, 359],
+        [2, 371],
+        [3, 381],
+        [4, 389],
+        ["table", 402],
+        ["privilèges", 411]
+    ]
+}

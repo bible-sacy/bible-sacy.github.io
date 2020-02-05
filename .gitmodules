@@ -21,3 +21,7 @@
 [submodule "pngs-nt-2"]
 	path = pngs-nt-2
 	url = https://github.com/bible-sacy/pngs-nt-2.git
+
+[submodule "pngs-o1"]
+	path = pngs-o1
+	url = https://github.com/bible-sacy/pngs-o1.git

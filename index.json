@@ -13,11 +13,12 @@
         ["josue", "Josué"],
         ["juges", "Juges"],
         ["ruth_n", "Ruth"],
-
         ["rois_1", "1 Rois"],
         ["rois_2", "2 Rois"],
         ["rois_3", "3 Rois"],
         ["rois_4", "4 Rois"],
+        ["paralipomenes_1", "1 Paralipomènes"],
+        ["paralipomenes_2", "2 Paralipomènes"],
 
         ["job", "Job"],
         ["pseaumes_t1", "Pseaumes (I-LIV)"],
@@ -89,7 +90,7 @@
         ["apocalypse", "Apocalypse"]
     ],
     "folders": {
-        "-at/1781_beaume_at_t1_p_manquante":
+        "-o1/1781_beaume_at_t1_p_manquante":
         ["Sainte Bible, Nouvelle Édition, Tome Premier", "Paris, Guillaume Desprez & Nîmes, Pierre Beaume", 1781,
             "Préface_Générale_La_Genèse_2DqNCaDbrBAC_page_manquante_dans_genèse.pdf", {
 
@@ -148,6 +149,12 @@
 
             }
         ],
+
+        "-o1/1711_desprez_paralipomenes":
+        ["Les Paralipomènes", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,
+            "-2/1711_desprez_paralipomenes_P_Oe5XEruFAC.pdf", {
+                
+        }],
 
         "-at/1695_desprez_job_3ed":
         ["Job", "Bruxelles, Eugène Henry Fricx", 1713,

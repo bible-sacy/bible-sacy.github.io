@@ -1,0 +1,28 @@
+{
+    "folder": "-nt-2/epitres_catholiques_apocalypse",
+    "offset": 525,
+    "min": 163,
+    "max": 203,
+    "chapters": [
+        ["Aaron", 163],
+        ["Baal", 169],
+        ["Caïn", 171],
+        ["Dagon", 174],
+        ["Eaux", 177],
+        ["Famine", 179],
+        ["Gaal", 180],
+        ["Habacuc", 181],
+        ["Jabès-Galaad", 182],
+        ["Laban", 187],
+        ["Macédoine", 188],
+        ["Naaman", 191],
+        ["Obed", 191],
+        ["Pacte", 192],
+        ["Questions", 196],
+        ["Rabba", 196],
+        ["Sabbat", 197],
+        ["Tabithe", 200],
+        ["Vasthi", 202],
+        ["Zacharie", 203]
+    ]
+}

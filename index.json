@@ -92,7 +92,10 @@
         ["jean_3", "3 Jean"],
         ["jude", "Jude"],
 
-        ["apocalypse", "Apocalypse"]
+        ["apocalypse", "Apocalypse"],
+
+        ["concorde_epitres_apocalypse", "(Concorde des Épîtres par Besoigne)"],
+        ["table_generale", "(Table Générale des Matières)"]
     ],
     "folders": {
         "-o1/1781_beaume_at_t1_p_manquante":

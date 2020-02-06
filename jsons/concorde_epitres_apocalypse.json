@@ -1,0 +1,30 @@
+{
+    "folder": "-nt-2/epitres_catholiques_apocalypse",
+    "offset": 525,
+    "min": -5,
+    "max": 162,
+    "chapters": [
+        ["table", -5],
+        ["titre", 1],
+        ["avertissement", 3],
+        ["préface", 4],
+        ["PREMIÈRE PARTIE", 7],
+        ["I ch.1 Vérité de la Religion Chrétienne", 7],
+        ["I ch.2 De la Foi spéculative des Mystères", 14],
+        ["I ch.3 De la Foi en Jésus-Christ", 27],
+        ["I ch.4 Suite de la nécessité de la Foi en J.C.", 38],
+        ["I ch.5 De la Miséricorde de Dieu", 48],
+        ["I ch.6 Pratique de la vertu de l’Espérance", 57],
+        ["I ch.7 De la vie de la Foi", 62],
+        ["DEUXIÈME PARTIE", 79],
+        ["II ch.1 De la Charité envers Dieu", 79],
+        ["II ch.2 De la Sainteté Chrétienne", 83],
+        ["II ch.3 Différentes Vertus Chrétiennes", 96],
+        ["II ch.4 De la charité envers le Prochain", 106],
+        ["II ch.5 Des Vertus d’état", 115],
+        ["II ch.6 Devoirs des Ecclésiastiques & des Laïques", 122],
+        ["II ch.7 Image abrégée de la vie chrétienne", 137],
+        ["II ch.8 Image des vertus des Ministres de l’Église", 149],
+        ["CONCLUSION de l’Ouvrage", 162]
+    ]
+}

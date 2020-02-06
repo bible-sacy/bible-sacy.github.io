@@ -1,12 +1,10 @@
-# Bible commentée de Port-Royal — Nouveau Testament
+# Bible commentée de Port-Royal
 
 ## Description
 
-Ce dépôt comprend les fichiers du site web statique [bible.sacy.be](https://bible.sacy.be/) qui permet de visualiser les pages des livres du Nouveau Testament de la Bible de Port-Royal, ou de Sacy.
+Ce dépôt comprend les fichiers du site web statique [bible.sacy.be](https://bible.sacy.be/) qui permet de visualiser les pages des livres de la Bible de Port-Royal, ou de Sacy.
 
-Ces pages sont enregistrées au format PNG, dans le dossiers `pngs`, et sont obtenues à partir d’un traitement avec [Ghostscript](https://www.ghostscript.com/) des numérisations effectuées par [Google Livres](https://books.google.fr/). Les documents PDF utilisés sont dans le dépôt [https://github.com/bible-sacy/pdfs](https://github.com/bible-sacy/pdfs).
-
-Les pages des livres de l’ancien testament se trouvent dans le dépôt [https://github.com/bible-sacy/pngs-at](https://github.com/bible-sacy/pngs-at).
+Ces pages sont enregistrées au format PNG, dans les différents dossiers `pngs*`, et sont obtenues à partir d’un traitement avec [Ghostscript](https://www.ghostscript.com/) et parfois [OptiPNG](http://optipng.sourceforge.net/) des numérisations effectuées par [Google Livres](https://books.google.fr/).
 
 Les découpages des chapitres sont enregistrées dans les différents documents JSON du dossier `jsons`.
 

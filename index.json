@@ -21,6 +21,9 @@
         ["paralipomenes_2", "2 Paralipomènes"],
         ["esdras", "1 Esdras"],
         ["nehemias", "2 Esdras (Nehemias)"],
+        ["tobie", "Tobie"],
+        ["judith", "Judith"],
+        ["esther", "Esther"],
 
         ["job", "Job"],
         ["pseaumes_t1", "Pseaumes (I-LIV)"],
@@ -126,13 +129,13 @@
         ],
 
         "-at-2/1711_desprez_josue":
-        ["Josué", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,
+        ["Josué, les Juges et Ruth", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,
             "-2/1711_desprez_josue_IlJPAAAAcAAJ.pdf", {
 
         }],
         
         "-at-2/1728_desprez_josue":
-        ["Josué", "Paris, Guillaume Desprez", 1728,
+        ["Josué, les Juges et Ruth", "Paris, Guillaume Desprez", 1728,
             "-2/1728_desprez_josue_4OVH9yfVaEEC.pdf", {
 
         }],
@@ -143,7 +146,6 @@
 
             }
         ],
-
 
         "-at-2/1700_fricx_rois_3_4":
         ["Les deux derniers livres des Rois", "Bruxelles, Eugène Henry Fricx", 1700,
@@ -161,6 +163,12 @@
         "-o1/1711_desprez_esdras":
         ["Esdras et Nehemias", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,
             "-2/1711_desprez_esdras_5lJPAAAAcAAJ.pdf", {
+
+        }],
+
+        "-o1/1711_desprez_tobie": [
+            "Tobie, Judith et Esther", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,
+            "-2/1711_desprez_tobie_XDopbRymJhYC.pdf", {
 
         }],
 

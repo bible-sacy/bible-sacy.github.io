@@ -19,6 +19,8 @@
         ["rois_4", "4 Rois"],
         ["paralipomenes_1", "1 Paralipomènes"],
         ["paralipomenes_2", "2 Paralipomènes"],
+        ["esdras", "1 Esdras"],
+        ["nehemias", "2 Esdras (Nehemias)"],
 
         ["job", "Job"],
         ["pseaumes_t1", "Pseaumes (I-LIV)"],
@@ -153,7 +155,13 @@
         "-o1/1711_desprez_paralipomenes":
         ["Les Paralipomènes", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,
             "-2/1711_desprez_paralipomenes_P_Oe5XEruFAC.pdf", {
-                
+
+        }],
+
+        "-o1/1711_desprez_esdras":
+        ["Esdras et Nehemias", "Paris, Guillaume Desprez & Jean-Baptiste Desessars", 1711,
+            "-2/1711_desprez_esdras_5lJPAAAAcAAJ.pdf", {
+
         }],
 
         "-at/1695_desprez_job_3ed":

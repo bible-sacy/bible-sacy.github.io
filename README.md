@@ -1,4 +1,4 @@
-# Bible commentée de Port-Royal
+# Bible de Port-Royal, avec les explications tirées des Saint Pères & des Auteurs Ecclésiastiques
 
 ## Description
 

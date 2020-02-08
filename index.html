@@ -56,6 +56,7 @@
             <form id="page-form" style="display: inline">
                     <label for="pages">Page</label>&nbsp;<input type="number" id="pages" name="pages"/>
             </form>
+            <button id="toggleViewButton" onclick="toggleView()">🗏🗏</button>
             &nbsp;
             <button id="next-top" style="width: 25%; font-weight: bold;">&rarr;</button>
         </div>
@@ -64,6 +65,11 @@
 
         <div class="image">
             <img id="page" style="max-width: 50em; width: 100%; min-width: 20em;"/>
+        </div>
+        
+        <div class="image">
+            <img id="page-paire" style="max-width: 50em; width: 47%;"/>
+            <img id="page-impaire" style="max-width: 50em; width: 47%;"/>
         </div>
 
         <div style="text-align: center; margin: auto;">
@@ -75,6 +81,8 @@
       </div>
         <script>
             //console.log("location.hash is", location.hash)
+
+            var double = false
 
             const CANONICAL = 'https://bible.sacy.be'
             const canonical = document.getElementById("canonical")
@@ -113,6 +121,8 @@
             })
 
             const img = document.getElementById("page")
+            const imgPaire = document.getElementById("page-paire")
+            const imgImpaire = document.getElementById("page-impaire")
             const chapters = document.getElementById("chapters")
             const pageSelector = document.getElementById("pages")
             const books = document.getElementById("books")
@@ -129,6 +139,7 @@
             const prevTop = document.getElementById("prev-top")
             const prevBottom = document.getElementById("prev-bottom")
             const sites = document.getElementById("sites")
+            const toggleViewButton = document.getElementById("toggleViewButton")
 
             sites.addEventListener("change", ev => {
                 ev.preventDefault()
@@ -221,8 +232,12 @@
 
             let nextPage = () => {
                 if (parseInt(pageSelector.value) < max) {
-                    pageSelector.value = parseInt(pageSelector.value) + 1
-                    document.body.scrollTop = document.documentElement.scrollTop = 0
+                    if (double && parseInt(pageSelector.value) + 1 < max) {
+                        pageSelector.value = parseInt(pageSelector.value) + 2
+                    } else {
+                        pageSelector.value = parseInt(pageSelector.value) + 1
+                    }
+                    if (!double) document.body.scrollTop = document.documentElement.scrollTop = 0
                     console.log("update from next")
                     update()
                 } else {
@@ -236,7 +251,11 @@
 
             let previousPage = () => {
                 if (parseInt(pageSelector.value) > min) {
-                    pageSelector.value = parseInt(pageSelector.value) - 1
+                    if (double && parseInt(pageSelector.value) - 1 < max) {
+                        pageSelector.value = parseInt(pageSelector.value) - 2
+                    } else {
+                        pageSelector.value = parseInt(pageSelector.value) - 1
+                    }
                     console.log("update from prev")
                     update()
                 } else {
@@ -264,16 +283,54 @@
                 }
             }
 
+            let toggleView = () => {
+                double = !double
+                update()
+                toggleViewButton.innerText = double ? "🗏" : "🗏🗏"
+            }
+
             let update = () => {
                 console.log("update called…")
                 sites.value = CANONICAL
                 const page = parseInt(pageSelector.value)
+                const pagePaire = ((page % 2) == 0) ? page : page - 1
+                const pageImpaire = pagePaire + 1
                 const number = offset + page
+                const numPair = offset + pagePaire
+                const numImpair = offset + pageImpaire
                 if (folder.match('/')) {
                    const [suffix, f]= folder.split('/', 2)
-                   img.src = `${BASE}pngs${suffix}/${f}/${f}-${number}.png`
+                   if (double) {
+                    img.src = ''
+                    img.style.display = 'none'
+                    imgPaire.style.display = ''
+                    imgPaire.src = `${BASE}pngs${suffix}/${f}/${f}-${numPair}.png`
+                    imgImpaire.style.display = ''
+                    imgImpaire.src = `${BASE}pngs${suffix}/${f}/${f}-${numImpair}.png`
+                   } else {
+                    imgPaire.src = ''
+                    imgPaire.style.display = 'none'
+                    imgImpaire.src = ''
+                    imgImpaire.style.display = 'none'
+                    img.style.display = ''
+                    img.src = `${BASE}pngs${suffix}/${f}/${f}-${number}.png`
+                   }
                 } else {
-                    img.src = `${BASE}pngs/${folder}/${folder}-${number}.png`
+                    if (double) {
+                        img.src = ''
+                        img.style.display = 'none'
+                        imgPaire.style.display = ''
+                        imgPaire.src = `${BASE}pngs/${folder}/${folder}-${numPair}.png`
+                        imgImpaire.style.display = ''
+                        imgImpaire.src = `${BASE}pngs/${folder}/${folder}-${numImpair}.png`
+                    } else {
+                        imgPaire.src = ''
+                        imgPaire.style.display = 'none'
+                        imgImpaire.src = ''
+                        imgImpaire.style.display = 'none'
+                        img.style.display = ''
+                        img.src = `${BASE}pngs/${folder}/${folder}-${number}.png`
+                    }
                 }
                 if (parseInt(chapters.value) !== page) {
                     chapters.value = null;
@@ -288,8 +345,14 @@
                     let corrections = foldersMap[folder][4]
                     let correctionPages = []
                     for (let correctionPage in corrections) {
-                        if (corrections[correctionPage].find(p => p == page) !== undefined) {
-                            correctionPages.push(correctionPage)
+                        if (double) {
+                            if (corrections[correctionPage].find(p => p == pagePaire || p == pageImpaire) !== undefined) {
+                                correctionPages.push(correctionPage)
+                            }
+                        } else {
+                            if (corrections[correctionPage].find(p => p == page) !== undefined) {
+                                correctionPages.push(correctionPage)
+                            }
                         }
                     }
                     if (correctionPages.length > 0) {

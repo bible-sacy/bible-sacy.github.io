@@ -1,7 +1,14 @@
 {
     "default": "preface_nouveau_testament",
     "books": [
+        ["avertissement", "(Avertissement)"],
+        ["vie_sacy", "(Vie de L.-I. Le Maistre de Sacy)"],
+        ["lettre_jerome", "(Lettre de St Jérôme à St Paulin)"],
+        ["exhortation_sagesse", "(Exhortation à la sagesse)"],
+        ["prieres", "(Prières pour le don de l'intelligence)"],
+        ["distribution", "(Distribution de la Bible)"],
         ["preface_ancien_testament", "(Préface de l’Ancient Testament)"],
+        ["chronologie", "(Chronologie sacrée)"],
 
         ["genese_1", "La Genèse (I-XIV)"],
         ["genese_2", "Suite de la Genèse (XV-L)"],

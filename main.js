@@ -140,7 +140,9 @@ const sacy_be_init = (canonicalArg, baseArg, documentTitleArg) => {
             })
             bookInfo.innerText = foldersMap[folder][0]
             editionInfo.innerText = foldersMap[folder][1] + ", " + foldersMap[folder][2]
-            if (pdf && pdf.startsWith("-")) {
+            if (pdf && pdf.startsWith("https://")) {
+                pdfLink.href = pdf
+            } else if (pdf && pdf.startsWith("-")) {
                 pdfLink.href = `${PDFS_BASE}${pdf}`
             } else {
                 pdfLink.href = `${PDFS_BASE}/${pdf}`

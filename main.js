@@ -328,7 +328,7 @@ const sacy_be_init = (canonicalArg, baseArg, documentTitleArg) => {
     prevTop.addEventListener("click", previousPage)
     prevBottom.addEventListener("click", previousPage)
 
-    const swipeElement = document.getElementById('main');
+    const swipeElement = document.getElementById('hammer');
     const mc = new Hammer(swipeElement);    
     mc.on('swipeleft', ev => {
         console.log("gesture : swipeleft")

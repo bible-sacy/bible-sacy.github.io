@@ -26,7 +26,7 @@
             </select>
             |
             <div id="book-form">
-                <label for="books">Livre</label>
+                <label for="books">L.</label>
                 <select name="books" id="books"
                     v-on:change="changeBook({ key: $event.target.selectedOptions[0].value })"
                 >
@@ -40,7 +40,7 @@
                     </option>
                 </select>
                 |
-                <label for="chapters">Chapitre</label>
+                <label for="chapters">Ch.</label>
                 <select name="chapters" id="chapters"
                     v-bind:value="currentChapter ? currentChapter.title : null"
                     v-on:change="changeChapter($event.target.selectedOptions[0].value)"
@@ -56,7 +56,6 @@
                 </select>
                 |
                 <button id="displayInfo" v-on:click="toggleInfo"><span id="infoIcon">ℹ</span>&nbsp;info</button>
-                <button onclick="window.open(window.location, '_blank').focus()">nouvel onglet</button>
             </div>
         </div>
 
@@ -83,14 +82,16 @@
         <div id="pageSelectorSection">
             <button id="prev-top" v-on:click="decrementPage">&larr;</button>
             &nbsp;
-            <div id="page-form">
-                <label for="pages">Page</label>
-                &nbsp;
-                <input type="number" id="pages" name="pages" v-bind:value="currentPage" v-on:change="changePage(parseInt($event.target.value))" />
-            </div>
             <button id="toggleViewButton" v-on:click="toggleDisplayMode">
                 {{ displayMode === 'onePage' ? '🗏🗏' : '🗏' }}
             </button>
+            &nbsp;
+            <div id="page-form">
+                <label for="pages">p.</label>
+                <input type="number" id="pages" name="pages" v-bind:value="currentPage" v-on:change="changePage(parseInt($event.target.value))" />
+            </div>
+            &nbsp;
+            <button onclick="window.open(window.location, '_blank').focus()" >✚&nbsp;onglet</button>
             &nbsp;
             <button id="next-top" v-on:click="incrementPage">&rarr;</button>
         </div>

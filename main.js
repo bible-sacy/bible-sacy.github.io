@@ -1,341 +1,520 @@
 const sacy_be_init = (canonicalArg, baseArg, documentTitleArg) => {
 
-    const CANONICAL = canonicalArg
-    const DOCUMENT_TITLE = documentTitleArg
+const CANONICAL = canonicalArg
+const DOCUMENT_TITLE = documentTitleArg
+const BASE = baseArg
+const PDFS_BASE = `${BASE}pdfs`
 
-    const BASE = baseArg
-    const PDFS_BASE = `${BASE}pdfs`
+const CANONICAL_NODE = document.getElementById("canonical")
 
-    const img = document.getElementById("page")
-    const imgPaire = document.getElementById("page-paire")
-    const imgImpaire = document.getElementById("page-impaire")
-    const chapters = document.getElementById("chapters")
-    const pageSelector = document.getElementById("pages")
-    const books = document.getElementById("books")
-    const pdfLink = document.getElementById("pdfLink")
-    const bookInfo = document.getElementById("bookInfo")
-    const editionInfo = document.getElementById("editionInfo")
-    const displayInfo = document.getElementById("displayInfo")
-    const infoIcon = document.getElementById("infoIcon")
-    const hideInfo = document.getElementById("hideInfo")
-    const infoWindow = document.getElementById("infoWindow")
-    const fautes = document.getElementById("fautes")
-    const nextTop = document.getElementById("next-top")
-    const nextBottom = document.getElementById("next-bottom")
-    const prevTop = document.getElementById("prev-top")
-    const prevBottom = document.getElementById("prev-bottom")
-    const sites = document.getElementById("sites")
-    const toggleViewButton = document.getElementById("toggleViewButton")
-    const canonical = document.getElementById("canonical")
+const state = {
+    loading: true,
+    showInfo: false,
+    displayMode : 'onePage', // 'onePage' or 'twoPages'
+    indexData: null, // content of index.json
+    currentBook: null,
+    bookData: null,  // content of <currentBook>.json
+    currentPage: null
+}
 
-    var double = false
-
-    {
-        // Redirect to the canonical website if hosted on github.io
-        const ALWAYS_REDIRECT = false
-        const REDIRECT_IF_GITHUB = false
-        if (ALWAYS_REDIRECT || (REDIRECT_IF_GITHUB && location.hostname.endsWith('github.io'))) {
-            canonical.setAttribute('href', `${CANONICAL}/${location.hash}`)
-            const meta = document.createElement('meta')
-            meta.httpEquiv = 'refresh'
-            meta.content = `0; URL=${CANONICAL}/${location.hash}`
-            document.getElementsByTagName('head')[0].appendChild(meta)
+const mutations = {
+    /**
+     * Set the initial state.
+     */
+    init (state, {indexData, currentBook, bookData, currentPage}) {
+        state.indexData = indexData
+        state.bookData = bookData
+        state.currentBook = currentBook
+        state.currentPage = currentPage
+        state.loading = false
+    },
+    /**
+     * Show or hide the info section.
+     */
+    toggleInfo (state) {
+        state.showInfo = !state.showInfo
+    },
+    /**
+     * Display with one or two pages.
+     */
+    toggleDisplayMode (state) {
+        state.displayMode = state.displayMode === 'onePage' ? 'twoPages' : 'onePage'
+    },
+    /**
+     * Go to the given page of the same book.
+     */
+    changePageInSameBook (state, page) {
+        if (page >= state.bookData.min && page <= state.bookData.max) {
+            state.currentPage = page
+        } else {
+            console.warn("changePageInSameBook: page ", page, "is not valid.")
         }
+    },
+    /**
+     * Go to a different book.
+     */
+    loadNewBook (state, {currentBook, bookData, currentPage}) {
+        state.bookData = bookData
+        state.currentBook = currentBook
+        state.currentPage = currentPage
     }
+}
 
-    window.addEventListener('popstate', () => {
-        if (location.hash && (m = location.hash.match(/#\/(.+)\/(.+)/))) {
-            let newBook = m[1]
-            let newPage = m[2]
-            if (newBook !== books.value) {
-                books.value = newBook
-                if (!books.value) {
-                    currentBook = newBook
+/**
+ * Returns the img src from the state and the image number.
+ */
+const getImgSrc =  (state, number) => {
+    const folder = state.bookData.folder
+    if (folder.match('/')) {
+        const [suffix, f] = folder.split('/', 2)
+        return `${BASE}pngs${suffix}/${f}/${f}-${number}.png`
+    } else {
+        return `${BASE}pngs/${folder}/${folder}-${number}.png`
+    }
+}
+
+const getPagePaire = (state) => {
+    if (state.loading) return null
+    const page = state.currentPage
+    return ((page % 2) == 0) ? page : page - 1
+}
+
+const getPageImpaire = (state) => getPagePaire(state) + 1
+
+const getRightOrOnlyPage = (state) => {
+    if (state.displayMode === 'twoPages') return getPageImpaire(state)
+    return state.currentPage
+}
+
+const convertToRoman = (num) => {
+    if (!Number.isInteger(num)) return num
+    var roman = {
+      M: 1000,
+      CM: 900,
+      D: 500,
+      CD: 400,
+      C: 100,
+      XC: 90,
+      L: 50,
+      XL: 40,
+      X: 10,
+      IX: 9,
+      V: 5,
+      IV: 4,
+      I: 1
+    };
+    var str = '';
+  
+    for (var i of Object.keys(roman)) {
+      var q = Math.floor(num / roman[i]);
+      num -= q * roman[i];
+      str += i.repeat(q);
+    }
+  
+    return str;
+}
+
+const getPreviousBook = (state, key) => {
+    if (state.loading) return null
+    const idx = state.indexData.books.findIndex(a => a[0] == key)
+    if (idx - 1 >= 0)
+        return state.indexData.books[idx - 1][0]
+    else
+        return null
+}
+
+const getNextBook = (state, key) => {
+    const idx = state.indexData.books.findIndex(a => a[0] == key)
+    if (idx + 1 < state.indexData.books.length)
+        return state.indexData.books[idx + 1][0]
+    else
+        return null
+}
+
+const getters  = {
+    /**
+     * Display name of the current book.
+     */
+    currentBookDisplayName (state) {
+        if (state.loading) return null
+        return state.indexData.books.filter(b => b[0] == state.currentBook)[0][1]
+    },
+    /**
+     * The list of books as {key, label}.
+     */
+    books (state) {
+        if (state.loading) return null
+        return state.indexData.books.map(a => { return {
+            key: a[0],
+            label: a[1]
+        }})
+    },
+    /**
+     * Name (key) of the previous book, if it exists.
+     */
+    previousBook (state) {
+        if (state.loading) return null
+        return getPreviousBook(state, state.currentBook)
+    },
+    /**
+     * Name (key) of the next book, if it exists.
+     */
+    nextBook (state) {
+        if (state.loading) return null
+        return getNextBook(state, state.currentBook)
+    },
+    /**
+     * The list of chapters of the current book as {title, page, next},
+     * where next is the last page of the chapter.
+     */
+    chapters (state) {
+        if (state.loading) return null
+        let l = []
+        for (let i = 0; i < state.bookData.chapters.length; ++i) {
+            const c = state.bookData.chapters[i]
+            let last = state.bookData.max
+            if (i < state.bookData.chapters.length - 1)
+                last = state.bookData.chapters[i+1][1] - 1
+            l.push({
+                roman: convertToRoman(c[0]),
+                title: c[0],
+                page: c[1],
+                last
+            })
+        }
+        return l
+    },
+    /**
+     * Returns the current chapter as {title, page, next},
+     * where next is the last page of the chapter.
+     */
+    currentChapter (state, getters) {
+        if (state.loading) return null
+        const chapters = getters.chapters
+        const currentPage = state.currentPage
+        return chapters.filter(chapter =>
+            currentPage >= chapter.page && currentPage <= chapter.last
+        )[0]
+    },
+    /**
+     * The src of the image, whene displayMode is 'onePage'.
+     */
+    currentPageImgSrc (state) {
+        if (state.loading) return null
+        const number = state.currentPage + state.bookData.offset
+        return getImgSrc(state, number)
+    },
+    /**
+     * The src of the left image, when displayMode is 'twoPages'
+     */
+    currentPageImgPaireSrc (state) {
+        const numPair = state.bookData.offset + getPagePaire(state)
+        return getImgSrc(state, numPair)
+    },
+    /**
+     * The src of the right image, when displayMode is 'twoPages'
+     */
+    currentPageImgImpaireSrc (state) {
+        if (state.loading) return null
+        const numImpair = state.bookData.offset + getPageImpaire(state)
+        return getImgSrc(state, numImpair)
+    },
+    /**
+     * Book name shown on the info div.
+     */
+    bookInfo (state) {
+        if (state.loading) return null
+        return state.indexData.folders[state.bookData.folder][0]
+    },
+    /**
+     * Edition information shown on the info div.
+     */
+    editionInfo (state) {
+        if (state.loading) return null
+        const info = state.indexData.folders[state.bookData.folder]
+        return info[1] + ", " + info[2]
+    },
+    /**
+     * href of the pdf
+     */
+    pdfLink (state) {
+        if (state.loading) return null
+        const pdf = state.indexData.folders[state.bookData.folder][3]
+        if (pdf && pdf.startsWith("https://")) {
+            return pdf
+        } else if (pdf && pdf.startsWith("-")) {
+            return `${PDFS_BASE}${pdf}`
+        } else {
+           return `${PDFS_BASE}/${pdf}`
+        }
+    },
+    /**
+     * Errata, as { href, book, page }
+     */
+    errata (state) {
+        if (state.loading) return null
+        const errata = []
+        const folderInfo = state.indexData.folders[state.bookData.folder]
+        if (folderInfo.length > 4) {
+            const errors = folderInfo[4]
+            for (let key in errors) {
+                if (state.displayMode === 'onePage') {
+                    if (errors[key] && errors[key].find(p => p == state.currentPage))
+                        errata.push(key)
+                } else if (state.displayMode === 'twoPages') {
+                    if (errors[key] && errors[key].find(p =>
+                            p == getPagePaire(state) || p == getPageImpaire(state)
+                        ))
+                        errata.push(key)
                 }
-                useBook(newBook, newPage)
-            } else if (newPage !== pageSelector.value) {
-                console.log("setPage from popState with newPage ", newPage)
-                setPage(newPage)
             }
         }
-    })
-
-    sites.addEventListener("change", ev => {
-        ev.preventDefault()
-        window.location = sites.selectedOptions[0].value
-    })
-
-    let infoShown = false
-
-    const toggleInfo = (ev) => {
-        ev.preventDefault()
-        if (infoShown) {
-            infoIcon.innerText = 'ℹ'
-            infoWindow.style.display = 'none'
-        } else {
-            infoWindow.style.display = ''
-            infoIcon.innerText = '❌'
-        }
-        infoShown = !infoShown
+        return errata.map(location => { return {
+            href: `#/${location}`,
+            page: location.split('/')[1],
+            book: state.indexData.books.filter(b => b[0] == location.split('/')[0])[0][1]
+        }})
+    },
+    /**
+     * Triggers the location hash change.
+     */
+    locationHash (state) {
+        if (state.loading) return null
+        const hash = `#/${state.currentBook}/${state.currentPage}`
+        window.location.hash = hash
+        CANONICAL_NODE.setAttribute('href', `${CANONICAL}/${hash}`)
+        return hash
+    },
+    /**
+     * Triggers the title change.
+     */
+    title (state, getters) {
+        if (state.loading) return null
+        const chapterInRoman = convertToRoman(getters.currentChapter ? getters.currentChapter.title : '')
+        const title = `p.${state.currentPage}-${chapterInRoman}-${getters.currentBookDisplayName} (${DOCUMENT_TITLE})`
+        document.title = title
+        return title
     }
+}
 
-    displayInfo.addEventListener("click", toggleInfo)
-
-    hideInfo.addEventListener("click", toggleInfo)
-
-    let folder = null
-    let offset = null
-    let max = null
-    let min = null
-    let pdf = null
-    let foldersMap = null
-    let bookKeysMap = {}
-    let bookList = []
-    let currentBook = null
-
-    document.getElementById("page-form").addEventListener("submit", e => e.preventDefault())
-    document.getElementById("book-form").addEventListener("submit", e => e.preventDefault())
-
-    books.addEventListener("change", e => {
-        useBook(books.value, null)
-    })
-
-    fetch(`${BASE}index.json`)
+const actions = {
+    /**
+     * Called at the main component creation.
+     */
+    fetchInitData ({ commit }, locationHash) {
+        fetch(`${BASE}index.json`)
         .then(response => response.json())
-        .then(index => {
-            index.books.forEach(value => {
-                books.options.add(new Option(value[1], value[0]))
-                bookKeysMap[value[0]] = value[1]
-                bookList.push(value[0])
+        .then(indexData => {
+            var currentBook = indexData.default
+            var currentPage = null 
+            if (locationHash && (m = locationHash.match(/#\/(.+)\/(.+)/))) {
+                currentBook = m[1]
+                currentPage = parseInt(m[2])
+            }
+            fetch(`${BASE}jsons/${currentBook}.json`)
+            .then(response => response.json())
+            .then(bookData => {
+                commit('init', {
+                    indexData,
+                    currentBook,
+                    bookData,
+                    currentPage: Number.isInteger(currentPage) && currentPage >= bookData.min && currentPage <= bookData.max ? currentPage : bookData.chapters[0][1]
+                })
             })
-            foldersMap = index.folders
-            if (location.hash && (m = location.hash.match(/#\/(.+)\/(.+)/))) {
-                books.value = m[1]
-                useBook(m[1], m[2])
-                if (!books.value) {
-                    currentBook = m[1]
-                }
+        })
+    },
+    /**
+     * Page change from the form input.
+     */
+    changePage ({ commit, state, getters, dispatch }, newValue) {
+        const page = parseInt(newValue)
+        if (page >= state.bookData.min && page <= state.bookData.max) {
+            commit('changePageInSameBook', page)
+        } else {
+            if (page > state.bookData.max && getters.nextBook) {
+                dispatch('changeBook', {
+                    key: getters.nextBook,
+                    page: newValue
+                })
+            } else if (page < state.bookData.min && getters.previousBook) {
+                dispatch('changeBook', {
+                    key: getters.previousBook,
+                    page: newValue
+                })
+            }
+        }
+    },
+    /**
+     * Page increment from a button, or gesture.
+     */
+    incrementPage ({ commit, state, dispatch, getters }) {
+        const page = getRightOrOnlyPage(state) + (state.displayMode === 'twoPages' ? 2 : 1)
+        if (page >= state.bookData.min && page <= state.bookData.max) {
+            commit('changePageInSameBook', page)
+        } else {
+            // go to the next book if applicable
+            if (getters.nextBook)
+                dispatch('changeBook', { key: getters.nextBook, page : 'min' })
+        }
+        if (state.displayMode === 'onePage') // scroll to the top
+            document.body.scrollTop = document.documentElement.scrollTop = 0
+    },
+    /**
+     * Page decrement from a button, or gesture.
+     */
+    decrementPage ({ commit, state, dispatch, getters }) {
+        const page = getRightOrOnlyPage(state) - (state.displayMode === 'twoPages' ? 2 : 1)
+        if (page >= state.bookData.min && page <= state.bookData.max) {
+            commit('changePageInSameBook', page)
+        } else {
+            // go to the previous book if applicable
+            if (getters.previousBook)
+                dispatch('changeBook', { key: getters.previousBook, page: 'max' })
+        }
+    },
+    /**
+     * Changes the chapter, or go back to the chapter begin.
+     */
+    changeChapter ({ commit, state }, title) {
+        const page = state.bookData.chapters.filter(c => c[0] == title)[0][1]
+        commit('changePageInSameBook', page)
+    },
+    /**
+     * Changes the book.
+     */
+    changeBook ({ commit }, { key, page }) {
+        fetch(`${BASE}jsons/${key}.json`)
+        .then(response => response.json())
+        .then(bookData => {
+            currentPage = bookData.chapters[0][1]
+            if (page == 'max') {
+                currentPage = bookData.max
+            } else if (page == 'min') {
+                currentPage = bookData.min
+            } else if (Number.isInteger(page) && page >= bookData.min && page <= bookData.max) {
+                currentPage = page
+            }
+            if (currentPage >= bookData.min && currentPage <= bookData.max) {
+                commit('loadNewBook', {
+                    currentBook: key,
+                    bookData,
+                    currentPage
+                })
             } else {
-                books.value = index.default
-                useBook(index.default, null)
+                var nextBook, previousBook
+                if (currentPage > bookData.max && (nextBook = getNextBook(state, key))) {
+                    dispatch('changeBook', {
+                        key: nextBook,
+                        page: newValue
+                    })
+                } else if (currentPage < bookData.min && (previousBook = getPreviousBook(state, key))) {
+                    dispatch('changeBook', {
+                        key: previousBook,
+                        page: newValue
+                    })
+                }    
             }
         })
-
-
-
-    let useBook = (nameArg, page) => fetch(`${BASE}jsons/${nameArg}.json`)
-        .then(response => response.json())
-        .then(json => {
-            //console.log("json is ", json)
-            folder = json.folder
-            pdf = foldersMap[folder][3]
-            offset = json.offset
-            max = json.max
-            min = json.min
-            pages.min = min
-            pages.max = max
-            while (chapters.options.length) chapters.remove(0);
-            json.chapters.forEach(value => {
-                chapters.options.add(new Option(value[0], value[1]))
-            })
-            bookInfo.innerText = foldersMap[folder][0]
-            editionInfo.innerText = foldersMap[folder][1] + ", " + foldersMap[folder][2]
-            if (pdf && pdf.startsWith("https://")) {
-                pdfLink.href = pdf
-            } else if (pdf && pdf.startsWith("-")) {
-                pdfLink.href = `${PDFS_BASE}${pdf}`
-            } else {
-                pdfLink.href = `${PDFS_BASE}/${pdf}`
-            }
-            console.log("setPage from useBook")
-            setPage(page ? page : json.chapters[0][1])
-        })
-
-    let nextPage = () => {
-        if (parseInt(pageSelector.value) < max) {
-            if (double && parseInt(pageSelector.value) + 1 < max) {
-                pageSelector.value = parseInt(pageSelector.value) + 2
-            } else {
-                pageSelector.value = parseInt(pageSelector.value) + 1
-            }
-            if (!double) document.body.scrollTop = document.documentElement.scrollTop = 0
-            console.log("update from next")
-            update()
-        } else {
-            let bookIdx = bookList.indexOf(books.value)
-            if (bookIdx < bookList.length - 1) {
-                books.value = bookList[bookIdx + 1]
-                useBook(books.value, 'min')
-            }
-        }
     }
+}
 
-    let previousPage = () => {
-        if (parseInt(pageSelector.value) > min) {
-            if (double && parseInt(pageSelector.value) - 1 < max) {
-                pageSelector.value = parseInt(pageSelector.value) - 2
-            } else {
-                pageSelector.value = parseInt(pageSelector.value) - 1
-            }
-            console.log("update from prev")
-            update()
-        } else {
-            let bookIdx = bookList.indexOf(books.value)
-            if (bookIdx > 0) {
-                books.value = bookList[bookIdx - 1]
-                useBook(books.value, 'max')
-            }
-        }
-    }
+const store = new Vuex.Store({
+    state,
+    getters,
+    mutations,
+    actions
+})
 
-    let setPage = p => {
-        if (p === 'max') {
-            pageSelector.value = max
-            console.log("update from setPage")
-            update()
-        } else if (p === 'min') {
-            pageSelector.value = min
-            console.log("update from setPage")
-            update()
-        } else if (p >= min && p <= max) {
-            pageSelector.value = parseInt(p)
-            console.log("update from setPage")
-            update()
-        }
-    }
-
-    let toggleView = () => {
-        double = !double
-        update()
-        toggleViewButton.innerText = double ? "🗏" : "🗏🗏"
-    }
-
-    toggleViewButton.addEventListener('click', toggleView)
-
-    let update = () => {
-        console.log("update called…")
-        sites.value = CANONICAL
-        const page = parseInt(pageSelector.value)
-        const pagePaire = ((page % 2) == 0) ? page : page - 1
-        const pageImpaire = pagePaire + 1
-        const number = offset + page
-        const numPair = offset + pagePaire
-        const numImpair = offset + pageImpaire
-        if (folder.match('/')) {
-            const [suffix, f] = folder.split('/', 2)
-            if (double) {
-                img.src = ''
-                img.style.display = 'none'
-                imgPaire.style.display = ''
-                imgPaire.src = `${BASE}pngs${suffix}/${f}/${f}-${numPair}.png`
-                imgImpaire.style.display = ''
-                imgImpaire.src = `${BASE}pngs${suffix}/${f}/${f}-${numImpair}.png`
-            } else {
-                imgPaire.src = ''
-                imgPaire.style.display = 'none'
-                imgImpaire.src = ''
-                imgImpaire.style.display = 'none'
-                img.style.display = ''
-                img.src = `${BASE}pngs${suffix}/${f}/${f}-${number}.png`
-            }
-        } else {
-            if (double) {
-                img.src = ''
-                img.style.display = 'none'
-                imgPaire.style.display = ''
-                imgPaire.src = `${BASE}pngs/${folder}/${folder}-${numPair}.png`
-                imgImpaire.style.display = ''
-                imgImpaire.src = `${BASE}pngs/${folder}/${folder}-${numImpair}.png`
-            } else {
-                imgPaire.src = ''
-                imgPaire.style.display = 'none'
-                imgImpaire.src = ''
-                imgImpaire.style.display = 'none'
-                img.style.display = ''
-                img.src = `${BASE}pngs/${folder}/${folder}-${number}.png`
-            }
-        }
-        if (parseInt(chapters.value) !== page) {
-            chapters.value = null;
-        }
-        if (books.value) {
-            location.hash = `/${books.value}/${page}`
-        } else {
-            location.hash = `/${currentBook}/${page}`
-        }
-        canonical.setAttribute('href', `${CANONICAL}/${location.hash}`)
-        if (foldersMap[folder].length > 4) {
-            let corrections = foldersMap[folder][4]
-            let correctionPages = []
-            for (let correctionPage in corrections) {
-                if (double) {
-                    if (corrections[correctionPage].find(p => p == pagePaire || p == pageImpaire) !== undefined) {
-                        correctionPages.push(correctionPage)
-                    }
-                } else {
-                    if (corrections[correctionPage].find(p => p == page) !== undefined) {
-                        correctionPages.push(correctionPage)
-                    }
+const MainComponent = {
+    el: '#main',
+    store,
+    created () {
+        this.$store.dispatch('fetchInitData', window.location.hash)
+        window.addEventListener('keydown', this.keyListener)
+    },
+    mounted () {
+        const swipeElement = document.getElementById('hammer');
+        if (swipeElement == null) console.warn("mounted: null element for hammer!")
+        const mc = new Hammer(swipeElement);    
+        mc.on('swipeleft', () => this.incrementPage())
+        mc.on('swiperight', () => this.decrementPage())
+        window.addEventListener('popstate', this.popStateListener)
+    },
+    destroyed () {
+        window.removeEventListener('keydown', this.keyListener)
+        window.removeEventListener('popstate', this.popStateListener)
+    },    
+    computed: {
+        ...Vuex.mapState([
+            'loading',
+            'showInfo',
+            'displayMode',
+            'currentBook',
+            'currentPage',
+          ]),
+        ...Vuex.mapGetters([
+            'books',
+            'chapters',
+            'currentChapter',
+            'currentPageImgSrc',
+            'currentPageImgPaireSrc',
+            'currentPageImgImpaireSrc',
+            'bookInfo',
+            'editionInfo',
+            'pdfLink',
+            'errata',
+            'locationHash',
+            'title'
+        ])
+    },
+    methods: {
+        changeSite (url) {
+            window.location = url
+        },
+        popStateListener () {
+            if (this.$store.loading) return
+            const hash = window.location.hash
+            if (hash && (m = hash.match(/#\/(.+)\/(.+)/))) {
+                let hashBook = m[1]
+                let hashPage = m[2]
+                if (
+                    this.$store.state.currentPage != parseInt(hashPage) ||
+                    this.$store.state.currentBook != hashBook
+                ) {
+                    this.$store.dispatch('fetchInitData', hash)
                 }
-            }
-            if (correctionPages.length > 0) {
-                showErrors(correctionPages)
-            } else {
-                clearErrors()
-            }
-        } else {
-            clearErrors()
-        }
-        if (books.selectedOptions[0]) {
-            document.title = `${DOCUMENT_TITLE} : ${books.selectedOptions[0].innerText} p. ${page}`
-        }
+            }    
+        },
+        keyListener (event) {
+            switch (event.key) {
+                case 'ArrowRight':
+                    this.incrementPage()
+                    break
+                case 'ArrowLeft':
+                    this.decrementPage()
+                    break
+                case 'i':
+                    this.toggleInfo()
+                    break
+                case 'v':
+                    this.toggleDisplayMode()
+                    break    
+            }    
+        },
+        ...Vuex.mapMutations([
+            'toggleInfo',
+            'toggleDisplayMode'
+        ]),
+        ...Vuex.mapActions([
+            'incrementPage',
+            'decrementPage',
+            'changePage',
+            'changeChapter',
+            'changeBook'
+        ])
     }
+}
 
-    let showErrors = (errorArray) => {
-        console.log("ERROR DETECTED", errorArray)
-        fautes.innerHTML = `Faute(s) à corriger : voir ` +
-            errorArray.map(p => `<a href="#/${p}">${bookKeysMap[p.split('/')[0]]} page ${p.split('/')[1]}</a>`).join(", ") +
-            "."
-    }
+const app = new Vue(MainComponent)
 
-    let clearErrors = () => {
-        fautes.innerHTML = ''
-    }
-
-    pageSelector.addEventListener("change", update)
-
-    chapters.addEventListener("change", event => {
-        // console.log("event is ", event)
-        setPage(chapters.value)
-    })
-
-
-
-    document.addEventListener('keydown', event => {
-        // console.log("event is ", event)
-        switch (event.key) {
-            case 'ArrowRight':
-                nextPage()
-                break
-            case 'ArrowLeft':
-                previousPage()
-                break
-        }
-    })
-
-    nextTop.addEventListener("click", nextPage)
-    nextBottom.addEventListener("click", nextPage)
-    prevTop.addEventListener("click", previousPage)
-    prevBottom.addEventListener("click", previousPage)
-
-    const swipeElement = document.getElementById('hammer');
-    const mc = new Hammer(swipeElement);    
-    mc.on('swipeleft', ev => {
-        console.log("gesture : swipeleft")
-        nextPage()
-    })
-    mc.on('swiperight', ev => {
-        console.log("gesture : swiperight")
-        previousPage()
-    })
 }

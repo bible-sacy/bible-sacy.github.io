@@ -42,6 +42,10 @@
     margin-right: auto;
 }
 
+#pages {
+    max-width: 3em;
+}
+
 #prev-top, #next-top {
     width: 25%;
     font-weight: bold;

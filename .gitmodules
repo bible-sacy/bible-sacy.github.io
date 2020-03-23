@@ -25,3 +25,6 @@
 [submodule "pngs-o1"]
 	path = pngs-o1
 	url = https://github.com/bible-sacy/pngs-o1.git
+[submodule "ui"]
+	path = ui
+	url = https://github.com/bible-sacy/ui.git

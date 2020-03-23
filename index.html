@@ -3,145 +3,32 @@
 
 <head>
     <meta charset="utf-8">
-    <link id="canonical" rel="canonical" href="https://bible.sacy.be/" />
+    <link id="canonical" rel="canonical" href="https://bible.sacy.be" />
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="QEHugPIPzX5vDvVdc4EOzFn4Q-L5lSUP60V2q6FjkBY" />
     <title>Bible de Sacy, ou de Port-Royal</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="ui/css/ui.css">
 </head>
 
 <body id="body">
-    <div id="main">
 
-        <div id="debug">
-        </div>
+    <div id="uiContainer"></div>
 
-        <div id="headerBarSection">
-            <select name="sites" id="sites" v-on:change="changeSite($event.target.selectedOptions[0].value)">
-                <option value="https://bible.sacy.be" selected>Bible de Sacy</option>
-                <option value="https://heures.sacy.be">Heures de Port-Royal</option>
-                <option value="https://royaumont.sacy.be">Bible de Royaumont</option>
-            </select>
-            |
-            <div id="book-form">
-                <label for="books">L.</label>
-                <select name="books" id="books"
-                    v-on:change="changeBook({ key: $event.target.selectedOptions[0].value })"
-                >
-                    <option
-                        v-for="book in books"
-                        :key="book.key"
-                        v-bind:value="book.key"
-                        v-bind:selected="currentBook === book.key"
-                    >
-                        {{ book.label }}
-                    </option>
-                </select>
-                |
-                <label for="chapters">Ch.</label>
-                <select name="chapters" id="chapters"
-                    v-bind:value="currentChapter ? currentChapter.title : null"
-                    v-on:change="changeChapter($event.target.selectedOptions[0].value)"
-                >
-                    <option
-                        v-for="chapter in chapters"
-                        :key="chapter.title"
-                        v-bind:value="chapter.title"
-                        v-bind:selected="currentChapter && chapter.title === currentChapter.title"
-                    >
-                        {{ chapter.roman }}
-                    </option>
-                </select>
-                |
-                <button id="displayInfo" v-on:click="toggleInfo"><span id="infoIcon">ℹ</span>&nbsp;info</button>
-            </div>
-        </div>
-
-
-        <div id="infoWindow" v-if="showInfo">
-            <hr />
-            Page courante tirée de : <span id="bookInfo">{{ bookInfo }}</span>, <span id="editionInfo">{{ editionInfo }}</span>
-            <a id="pdfLink" target="_blank" v-bind:href="pdfLink">(pdf original)</a>
-            <br />
-            <a href="https://github.com/bible-sacy/bible-sacy.github.io/issues" target="_blank">rapporter une erreur</a>
-            &nbsp;|&nbsp;
-            <a href="https://github.com/bible-sacy/bible-sacy.github.io" target="_blank">code source du site web</a>
-            &nbsp;|&nbsp;
-            <a href="https://github.com/bible-sacy/bible-sacy.github.io/blob/master/README.md#conditions-dutilisation"
-                target="_blank">conditions d’utilisation</a>
-            &nbsp;|&nbsp;
-            <a href="https://www.sacy.be" target="_blank">autres œuvres de Port-Royal</a>
-            <br />
-            <button id="hideInfo" v-on:click="toggleInfo"><small>❌&nbsp;cacher ces informations</small></button>
-        </div>
-
-        <hr />
-
-        <div id="pageSelectorSection">
-            <button id="prev-top" v-on:click="decrementPage">&larr;</button>
-            &nbsp;
-            <button id="toggleViewButton" v-on:click="toggleDisplayMode">
-                {{ displayMode === 'onePage' ? '🗏🗏' : '🗏' }}
-            </button>
-            &nbsp;
-            <div id="page-form">
-                <label for="pages">p.</label>
-                <input type="number" id="pages" name="pages" v-bind:value="currentPage" v-on:change="changePage(parseInt($event.target.value))" />
-            </div>
-            &nbsp;
-            <button onclick="window.open(window.location, '_blank').focus()" >✚&nbsp;onglet</button>
-            &nbsp;
-            <button id="next-top" v-on:click="incrementPage">&rarr;</button>
-        </div>
-
-        <div id="fautes" v-if="errata && errata.length > 0">
-            <a href=""
-                v-for="erratum in errata"
-                :key="erratum.href"
-                v-bind:href="erratum.href"
-            >
-                Erratum : voir <i>{{ erratum.book }}</i> p. {{ erratum.page }}
-            </a>
-        </div>
-
-        <div id="hammer">
-            <div v-if="displayMode === 'onePage'" class="image">
-                <img id="page" v-bind:src="currentPageImgSrc" />
-            </div>
-
-            <div v-if="displayMode === 'twoPages'" class="image">
-                <img id="page-paire" v-bind:src="currentPageImgPaireSrc" />
-                <img id="page-impaire" v-bind:src="currentPageImgImpaireSrc" />
-            </div>
-        </div>
-
-        <div style="display: none">{{ title }} : {{ locationHash }}</div>
-
-        <div id="footerSection">
-            <button id="prev-bottom" v-on:click="decrementPage">&larr;</button>
-            &nbsp;&nbsp;
-            <button id="next-bottom" v-on:click="incrementPage">&rarr;</button>
-        </div>
-
-    </div><!-- #main -->
-
-    <script src="hammer.min.js"></script>
-    <!-- on production -->
-    <script src="vue.min.js"></script>
-    <script src="vuex.min.js"></script>
-    <!-- -->
-    <!--
+    <script src="env.js"></script>
+    <!-- for dev
     <script src="vue.js"></script>
     <script src="vuex.js"></script>
-    -->
-    <script src="main.js"></script>
-    <script>
-        sacy_be_init('https://bible.sacy.be', '', 'Bible de Sacy, ou de Port-Royal')
-    </script>
-    <script src="darkmode-js.min.js"></script>
-    <script src="darkmode-config.js"></script>
+        end: for dev -->
+    <!-- for production -->
+    <script src="ui/js/lib/vue.min.js"></script>
+    <script src="ui/js/lib/vuex.min.js"></script>
+    <!-- end: for production -->
+    <script src="ui/js/lib/hammer.min.js"></script>
+    <script src="ui/js/ui.js"></script>
+    <script>ui_init(UI_ENV)</script>
+    <script src="ui/js/lib/darkmode-js.min.js"></script>
+    <script src="ui/js/darkmode.js"></script>
 </body>
 
 </html>

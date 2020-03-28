@@ -1,8 +1,8 @@
 {
     "folder": "-nt-1/jean",
     "offset": 13,
-    "max": 592,
-    "min": -12,
+    "max": 586,
+    "min": -5,
     "chapters": [
         ["titre", -5],
         ["préface", 5],

@@ -1,8 +1,8 @@
 {
     "folder": "-at/1690_desprez_pseaumes_t3",
     "offset": 9,
-    "min": -7,
-    "max": 576,
+    "min": -3,
+    "max": 571,
     "chapters": [
         ["titre", -3],
         ["table des pseaumes", -1],

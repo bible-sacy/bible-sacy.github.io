@@ -1,8 +1,8 @@
 {
     "folder": "-nt-1/actes_des_apotres",
     "offset": 45,
-    "max": 745,
-    "min": -44,
+    "max": 742,
+    "min": -39,
     "chapters": [
         ["titre", -39],
         ["préface", -37],

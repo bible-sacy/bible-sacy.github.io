@@ -2,9 +2,11 @@
     "folder": "-nt-2/timothee_tite",
     "offset": 21,
     "max": 170,
-    "min": -20,
+    "min": -15,
     "chapters": [
-        ["avis", -2],
+        ["titre", -15],
+        ["avis", -11],
+        ["avis sur l’épître", -2],
         [1, 1],
         [2, 23],
         [3, 45],

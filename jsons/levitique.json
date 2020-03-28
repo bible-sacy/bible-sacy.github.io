@@ -2,7 +2,7 @@
     "folder": "-at/1727_fricx_exode_levitique",
     "offset": 65,
     "min": 503,
-    "max": 794,
+    "max": 792,
     "chapters": [
         ["titre", 503],
         ["avertissement", 505],
@@ -33,6 +33,7 @@
         [25, 743],
         [26, 757],
         [27, 769],
-        ["table", 780]
+        ["table", 780],
+        ["privilège", 792]
     ]
 }

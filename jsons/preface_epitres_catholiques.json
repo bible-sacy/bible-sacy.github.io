@@ -2,7 +2,7 @@
     "folder": "-nt-2/epitres_catholiques",
     "offset": 29,
     "max": -10,
-    "min": -27,
+    "min": -23,
     "chapters": [
         ["titre", -23],
         ["préface", -21]

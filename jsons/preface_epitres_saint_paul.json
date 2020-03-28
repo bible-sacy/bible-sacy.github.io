@@ -2,7 +2,7 @@
     "folder": "-nt-1/romains_corinthiens_1_new",
     "offset": 5,
     "max": 32,
-    "min": -3,
+    "min": 3,
     "chapters": [
         ["titre", 3],
         ["préface générale", 5]

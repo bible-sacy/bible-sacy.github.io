@@ -2,7 +2,7 @@
     "folder": "-nt-1/marc_et_luc",
     "offset": 13,
     "max": 218,
-    "min": -12,
+    "min": -5,
     "chapters": [
         ["titre", -5],
         ["préface", -3],

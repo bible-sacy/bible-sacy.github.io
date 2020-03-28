@@ -21,7 +21,7 @@ optipng.exe
 
 & 'C:\Program Files\gs\gs9.50\bin\gswin64c.exe' -dNOPAUSE -dBATCH -sDEVICE=pnggray -r250 -sOutputFile='pngs-nt-1/matthieu_1/matthieu_1-174.png' .\pdfs\bible_sacy_matthieu_1_p174.pdf
 
-
+1404 x 2414
 bible_sacy_matthieu_1_p174.pdf
 
 ```

@@ -2,7 +2,7 @@
     "folder": "-at/1700_fricx_ecclesiastique",
     "offset": 13,
     "min": -7,
-    "max": 674,
+    "max": 664,
     "chapters": [
         ["titre", -7],
         ["avertissement", -5],
@@ -55,11 +55,11 @@
         [46, 583],
         [47, 591],
         [48, 600],
-        [49, 619],
-        [50, 626],
-        [51, 637],
-        ["table", 649],
-        ["approbations", 672],
-        ["privilège", 674]
+        [49, 609],
+        [50, 616],
+        [51, 627],
+        ["table", 639],
+        ["approbations", 662],
+        ["privilège", 664]
     ]
 }

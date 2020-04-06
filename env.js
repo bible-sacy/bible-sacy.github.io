@@ -12,6 +12,10 @@ const sites = [
         url: 'https://royaumont.sacy.be'
     },
     {
+        title: 'Considérations de Saint-Cyran',
+        url: 'https://considerations.sacy.be'
+    },
+    {
         title: 'Hiver - Bréviaire Le Tourneux',
         url: 'https://breviaire.sacy.be/hiver'
     },

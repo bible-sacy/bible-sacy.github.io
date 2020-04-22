@@ -7,4 +7,6 @@
 optipng.exe *.png
 
 Get-ChildItem -Path . -Filter *.png -Recurse | Foreach { optipng.exe $_.fullname }
+
+Get-ChildItem -Path . -Recurse -File -Filter *.png | Where-Object { $_.Length -gt 80kb } | Foreach { optipng.exe $_.fullname }
 ```

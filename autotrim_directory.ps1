@@ -8,14 +8,15 @@ $lastPart = $dirParts[$dirPartsCount - 1]
 $dirParts[$dirPartsCount - 1] = "trimmed-$lastPart"
 $outputDir = $dirParts -join '\'
 
-echo "new directory: $outputDir"
+Write-Output "new directory: $outputDir"
+
 mkdir -p $outputDir
 
-echo "trimming files in $directory to $outputDir"
+Write-Output "trimming files in $directory to $outputDir"
 
-Get-ChildItem -Path $directory -Filter *.png | Foreach {
+Get-ChildItem -Path $directory -Filter *.png | ForEach-Object {
 
-    echo "trimming  file $directory\$_"
+    Write-Output "trimming  file $directory\$_"
 
     $outputFile = "$outputDir\trimmed-$_"
 

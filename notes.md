@@ -1,8 +1,8 @@
 
 ```
-& 'C:\Program Files\gs\gs9.50\bin\gswin64c.exe' -dNOPAUSE -dBATCH -sDEVICE=pngmono -r220 -sOutputFile='pngs\FOLDER\FOLDER-%00d.png'
+& 'C:\Program Files\gs\gs9.50\bin\gswin64c.exe' -dNOPAUSE -dBATCH -sDEVICE=pnggray -r250 -dFirstPage=580 -dLastPage=774 -sOutputFile='concorde\concorde-%00d.png' concorde.pdf
 
--dFirstPage=303 -dLastPage=303
+-dFirstPage=589 -dLastPage=774
 
 optipng.exe *.png
 

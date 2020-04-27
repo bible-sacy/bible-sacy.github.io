@@ -1,0 +1,31 @@
+{
+    "folder": "-nt-2/trimmed-concorde",
+    "offset": 10,
+    "min": -9,
+    "max": 182,
+    "chapters": [
+        ["Préface", -9],
+        ["Articles", -5],
+        ["Préface de S. Luc", 1],
+        ["10 La Purification.", 7],
+        ["20 Colloque avec Nicodême.", 15],
+        ["30 Trois hommes repris par Jésus-Christ", 23],
+        ["40 Élection des Apôtres. Sermon sur la montagne.", 36],
+        ["50 Exclamation d’une Femme. Mère et Frères de Jésus-Christ.", 51],
+        ["60 Mains non lavées. Traditions humaines.", 69],
+        ["70 Dispute entre les Apôtres. Devenir petit. Scandale. Cent brebis.", 80],
+        ["80 La Parabole du Samaritain.", 92],
+        ["90 Peu de sauvés. Jésus devait mourir à Jerusalem.", 100],
+        ["100 Petits enfans amenés à Jésus-Christ. Empêchement des richesses.", 108],
+        ["110 Jésus chasse une seconde fois les vendeurs du Temple. Et ce qu’il fait ensuite.", 120],
+        ["120 Les deux deniers de la Veuve.", 130],
+        ["130 L’Eucharistie.", 140],
+        ["140 Jésus livré à Pilate. Mort de Judas.", 155],
+        ["150 L’Ascension", 172],
+        ["Table des chapitres", 173],
+        ["Table de S. Matthieu", 177],
+        ["Table de S. Marc", 179],
+        ["Table de S. Luc", 180],
+        ["Table de S. Jean", 181]
+    ]
+}

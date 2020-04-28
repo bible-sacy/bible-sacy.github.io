@@ -1,6 +1,6 @@
 
 ```
-& 'C:\Program Files\gs\gs9.50\bin\gswin64c.exe' -dNOPAUSE -dBATCH -sDEVICE=pnggray -r250 -dFirstPage=580 -dLastPage=774 -sOutputFile='concorde\concorde-%00d.png' concorde.pdf
+& 'C:\Program Files\gs\gs9.50\bin\gswin64c.exe' -dNOPAUSE -dBATCH -sDEVICE=pnggray -r220 -sOutputFile='foppens\foppens-%00d.png' foppens.pdf
 
 -dFirstPage=589 -dLastPage=774
 

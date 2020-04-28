@@ -72,7 +72,8 @@
         ["luc", "Luc"],
         ["jean", "Jean"],
 
-        ["concorde", "(Concorde des quatre Évangélistes)"],
+        ["concorde_foppens", "(Concorde des Évangélistes par Arnauld)"],
+        ["concorde", "(Concorde bilingue des Évangélistes par Arnauld)"],
 
         ["actes_des_apotres", "Actes des Apôtres"],
 
@@ -388,6 +389,13 @@
         ["La Sainte Bible en latin et en françois […] et La Concorde des quatre Évangélistes […], Tome III", "Paris, Guillaume Desprez & Jean Desessartz", 1717,
             "https://books.google.fr/books?id=MBag52OBdKEC", {
 
+        }],
+
+        "-nt-2/trimmed-foppens":
+        ["Histoire et Concorde des quatre Évangelistes", "Brusselle, François Foppens", 1700,
+            "https://books.google.fr/books?id=eKTjJ9HYLAkC", {
+
         }]
+
     }
 }

@@ -47,15 +47,15 @@ const UI_ENV = {
     sites,
     links: [
         {
-            title: 'rapporter une erreur',
-            url: 'https://github.com/bible-sacy/bible-sacy.github.io/issues'
+            title: 'Remarque, erreur ? contact@sacy.be',
+            url: 'mailto:contact@sacy.be'
         },
         {
-            title: 'code source du site web',
+            title: 'Code source du site web',
             url: 'https://github.com/bible-sacy/bible-sacy.github.io'
         },
         {
-            title: 'autres œuvres de Port-Royal',
+            title: 'Autres œuvres de Port-Royal',
             url: 'https://www.sacy.be'
         }
     ]

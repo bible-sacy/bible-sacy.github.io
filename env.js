@@ -8,6 +8,10 @@ const sites = [
         url: 'https://heures.sacy.be'
     },
     {
+        title: 'De l’Imitation de Jésus-Christ',
+        url: 'https://imitation.sacy.be'
+    },
+    {
         title: 'Bible de Royaumont',
         url: 'https://royaumont.sacy.be'
     },

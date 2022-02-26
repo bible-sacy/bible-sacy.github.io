@@ -24,6 +24,10 @@ const sites = [
         url: 'https://theologie-familiere.sacy.be'
     },
     {
+        title: 'L’Année Chrétienne - Le Tourneux',
+        url: 'https://missel.sacy.be'
+    },
+    {
         title: 'Hiver - Bréviaire Le Tourneux',
         url: 'https://breviaire.sacy.be/hiver'
     },

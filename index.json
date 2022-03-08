@@ -1,5 +1,5 @@
 {
-    "default": "preface_nouveau_testament",
+    "default": "avertissement",
     "books": [
         ["avertissement", "(Avertissement)"],
         ["vie_sacy", "(Vie de L.-I. Le Maistre de Sacy)"],

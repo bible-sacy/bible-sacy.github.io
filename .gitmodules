@@ -27,3 +27,6 @@
 [submodule "pngs-nt-1-trimmed"]
 	path = pngs-nt-1-trimmed
 	url = https://github.com/bible-sacy/pngs-nt-1-trimmed.git
+[submodule "pub"]
+	path = pub
+	url = https://github.com/bible-sacy/pub

@@ -55,6 +55,10 @@ const UI_ENV = {
     sites,
     links: [
         {
+            title: 'Livres au format PDF',
+            url: 'https://bible.sacy.be/pub/'
+        },
+        {
             title: 'Remarque, erreur ? contact@sacy.be',
             url: 'mailto:contact@sacy.be'
         },

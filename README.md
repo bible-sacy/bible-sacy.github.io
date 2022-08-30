@@ -10,6 +10,8 @@ Les découpages des chapitres sont enregistrées dans les différents documents 
 
 Le fichier `index.html` contient tout le code javascript qui permet la navigation dans les différents livres disponibles.
 
+Pour une utilisation locale, il faut récupérer avec le script `subrepos_clone.sh` les dépôts nécessaires.
+
 ## Conditions d’utilisation
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Le code html, javascript et les données JSON sont mis à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licence Creative Commons Attribution -  Partage dans les Mêmes Conditions 4.0 International</a>.

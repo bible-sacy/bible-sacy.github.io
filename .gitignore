@@ -1,3 +1,9 @@
 ~*
 icon.*
 original_*
+__pycache__
+ui/
+pub/
+pdfs/
+pdfs-*/
+pngs-*/

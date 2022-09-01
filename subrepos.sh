@@ -1,1 +1,1 @@
-export SUBREPOS="pngs-at pngs-at-2 pngs-nt-1-trimmed pngs-nt-2 pngs-o1 pub ui"
+export SUBREPOS="pdfs pdfs-2 pngs-at pngs-at-2 pngs-nt-1-trimmed pngs-nt-2 pngs-o1 pub ui"

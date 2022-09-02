@@ -1,5 +1,3 @@
-. subrepos.sh
-for subrepo in $SUBREPOS
-do
-    git clone git@github.com:bible-sacy/$subrepo.git
-done
+#!/usr/bin/env bash
+. subrepos_env.sh
+clone_subrepos

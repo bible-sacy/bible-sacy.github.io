@@ -53,6 +53,8 @@ const UI_ENV = {
     bookSelectorLabel: 'L.',
     chapterSelectorLabel: 'Ch.',
     sites,
+    footerLink: '/pub/',
+    footerLinkLabel: 'Livres au format PDF',
     links: [
         {
             title: 'Livres au format PDF',

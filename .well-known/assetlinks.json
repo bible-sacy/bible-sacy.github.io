@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "be.sacy",
+      "sha256_cert_fingerprints": [
+        "79:B5:E6:17:64:92:87:55:93:90:F1:13:A0:95:2E:96:94:DE:FE:9A:11:FE:C5:C2:F3:31:4D:63:1C:F2:C7:81"
+      ]
+    }
+  }
+]

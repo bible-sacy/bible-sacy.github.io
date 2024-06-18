@@ -24,11 +24,9 @@
     "theme_color": "black",
     "related_applications": [
       {
-        "platform": "web"
-      },
-      {
         "platform": "play",
-        "url": "https://play.google.com/store/apps/details?id=be.sacy"
+        "url": "https://play.google.com/store/apps/details?id=be.sacy",
+        "id": "be.sacy"
       }
     ]
   }
